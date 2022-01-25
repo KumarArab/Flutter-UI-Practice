@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:testapp/UIs/Bubble%20Backup%20Animation/bubble_backup_animation.dart';
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
 import 'package:testapp/utils/size_config.dart';
 
@@ -36,7 +37,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Flutter UIs"),
       ),
       body: ListView.builder(
-        itemCount: 1,
+        itemCount: 2,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (ctx, i) => ListTile(
             leading: const Icon(
@@ -53,6 +54,8 @@ class HomePage extends StatelessWidget {
     switch (index) {
       case 0:
         return "Staggered Grid View";
+      case 1:
+        return "Bubble Animation";
 
       default:
         return "Not yet decided";
@@ -66,6 +69,14 @@ class HomePage extends StatelessWidget {
           context,
           CupertinoPageRoute(
             builder: (ctx) => const StaggeredGridView(),
+          ),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (ctx) => const DataBackupHome(),
           ),
         );
         break;
