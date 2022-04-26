@@ -56,33 +56,48 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(recipeUrl),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              child: const Text("Scan Code"),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (ctx) => BarcodePage(
-                      result: (url) {
-                        setState(() {
-                          barcodeResult = url;
-                          join();
-                        });
-                      },
-                    ),
+      body: ListView.builder(
+        shrinkWrap: true,
+        // physics: const NeverScrollableScrollPhysics(),
+        itemCount: 100,
+        itemBuilder: (context, i) {
+          final _expansionTileKey = GlobalKey();
+          return ExpansionTile(
+            initiallyExpanded: false,
+            textColor: Colors.black,
+            key: _expansionTileKey,
+            onExpansionChanged: (value) =>
+                {}, //widget.onExpansionChanged(_expansionTileKey),
+            trailing: const Icon(
+              Icons.keyboard_arrow_down,
+            ),
+            subtitle: Text(
+              "$i - $i",
+            ),
+            title: Text(
+              '$i',
+            ),
+            children: <Widget>[
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 20,
+                itemBuilder: (_, index) {
+                  return Container(
+                    color: Colors.white,
+                    child: Text("$index"),
+                  );
+                },
+                separatorBuilder: (_, i) => const Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: Divider(
+                    height: 1,
                   ),
-                );
-              },
-            )
-          ],
-        ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
