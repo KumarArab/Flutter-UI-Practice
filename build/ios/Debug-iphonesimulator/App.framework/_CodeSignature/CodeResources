@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		TCzyX2leVSZb02Rq5wv5CciXPAs=
+		Kx7oPyHGLbIpUVdTEEPtEfzTXCg=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,51 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		kOXTrIw1/A6QTm04udkK4dFPNlc=
+		3EDQagXWbRjrOEAJX8UJADWRZ/g=
+		</data>
+		<key>flutter_assets/assets/custompathassets/bg1.svg</key>
+		<data>
+		2DLBvxG0NZ/LM8C6SmVvksARLOU=
+		</data>
+		<key>flutter_assets/assets/custompathassets/bg2.svg</key>
+		<data>
+		+gpJAugSm9jbPf7zO9+hfl831yg=
+		</data>
+		<key>flutter_assets/assets/custompathassets/board.svg</key>
+		<data>
+		b8DEhTh+vZscairGy6JPQImGoPA=
+		</data>
+		<key>flutter_assets/assets/custompathassets/direction_board.svg</key>
+		<data>
+		QQQz/HZn2sCDFDmnqW5aD6OyNlQ=
+		</data>
+		<key>flutter_assets/assets/custompathassets/grass.svg</key>
+		<data>
+		dT8UODkEfRTslAzWDVfrsOUy9GY=
+		</data>
+		<key>flutter_assets/assets/custompathassets/shadow_tree.svg</key>
+		<data>
+		q6GEU/DPPLKB/9GilX1wSrFw5hw=
+		</data>
+		<key>flutter_assets/assets/custompathassets/snow_stone.svg</key>
+		<data>
+		fq3GN/5mrWwLMHMIlDKuo7gIfyM=
+		</data>
+		<key>flutter_assets/assets/custompathassets/snow_tree.svg</key>
+		<data>
+		ttMqTNDMUfyENQ8zhClPQr0Kzl4=
+		</data>
+		<key>flutter_assets/assets/custompathassets/stone.svg</key>
+		<data>
+		tIUNtvoBIuxtTvjwQBkBggd8rl0=
+		</data>
+		<key>flutter_assets/assets/custompathassets/tree.svg</key>
+		<data>
+		hJMK1AF8RY9U73QuF8I4/6PiubA=
+		</data>
+		<key>flutter_assets/assets/custompathassets/wood_grass.svg</key>
+		<data>
+		UbSMbF2nTbC0z5l6+DVCOo7AyRM=
 		</data>
 		<key>flutter_assets/assets/drawable/map_horizontal.png</key>
 		<data>
@@ -62,7 +106,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		CUwZtKqYxi5uuE/twz0SMPHERJE=
+		AdWikiyY1oDrjk6obyRVFEYqosg=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -79,7 +123,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7OaVbzdvH8hp3PPqXDac7VRFJKMaL9LXjdS70Xhz/sw=
+			MTd9GtXA1+TW+s2cPwmeyVjHoHgEV+PdtVrQBDN1sfw=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -93,7 +137,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oSQuUoMicYG3KAAsctD1cGFunDLYg1QarR7fzNNx6Ps=
+			s7t5TgHoGeUeiqnO2cVQWoKpIzokkjvGiTr0O+uWWAQ=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/bg1.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yDkAW7YTlhgj4Cp4vIac0EH/9dophVudu7b6zxltqE8=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/bg2.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			7QIyla9G2OIsRHnV4iQy55bni2cDNSO5G5ElvvVJv7M=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/board.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RLnUrouHUqHCKdE2oNDyaYaOwLjGqJskpKchc8BEGo4=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/direction_board.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XcKCwKx+hHuT7Q8kFTbnbg4aReS0qjaOKG4AJxAb/dM=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/grass.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			JswnsMhWOUI6Wq+chm3xLVdN2DmZBMdxf8GsHZpgvYo=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/shadow_tree.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VX4W5mN2o042XhlxnT1vxn5FNoiU4T5xNWYICwx4P/E=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/snow_stone.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			CkfvWO4YatAA3LtyrnYhy1reSNOx0YndUP0KTzsOrtA=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/snow_tree.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			dJtZOKReU7a9GieP3N5BCCGzQwlxZiCUdvzwMq5d6XM=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/stone.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6tyJ+5MoUXFlqe4WwjReVliKBjKNPanpFedsQghtOWw=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/tree.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tYjjgq0Pbo3MXebQU/ZZME/8FcbhN5qkErls9uv7yjw=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/custompathassets/wood_grass.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			IjdOW2ZFHGdKwIK9iCaney0XMfo5rKvRoDuGFNQVBhQ=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/drawable/map_horizontal.png</key>
@@ -170,7 +291,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+MbN+jbpEqUxxd+GYxfYdM52owOL99M7MQCyZsO2+Ok=
+			6UCfMm17T9h7eRdx3hf9xIjmZTtzayNXQ2p1rV4smhg=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
