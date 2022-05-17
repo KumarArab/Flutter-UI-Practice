@@ -37,7 +37,7 @@ class TestView extends StatelessWidget {
             title: const Text("Custom Path"),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (ctx) => const CustomPath(),
+                builder: (ctx) => const JourneyScreen(),
               ),
             ),
           ),
