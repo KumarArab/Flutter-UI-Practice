@@ -1,67 +1,76 @@
 import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:testapp/UIs/test/Custom%20Path/active_milestone.dart';
+import 'package:testapp/UIs/test/Custom%20Path/addons_path_painters.dart';
 import 'package:testapp/UIs/test/Custom%20Path/custom_path_model.dart';
+import 'package:testapp/UIs/test/Custom%20Path/path_painters.dart';
+import 'package:testapp/UIs/test/Custom%20Path/stage_painters.dart';
 import 'package:testapp/utils/size_config.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
+import 'dart:math' as math;
 
-class CustomPath extends StatefulWidget {
-  const CustomPath({Key? key}) : super(key: key);
+class JourneyScreen extends StatefulWidget {
+  const JourneyScreen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return CustomPathState();
+    return JourneyScreenState();
   }
 }
 
-class CustomPathState extends State<CustomPath>
+class JourneyScreenState extends State<JourneyScreen>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   ScrollController? _mainController;
   Animation? _animation;
   Path? _path;
-  final noOfSlides = 4;
+  final noOfSlides = 2;
   final bgWidth = SizeConfig.width;
   final bgHeight = SizeConfig.width! * 2.04;
   double? fullBGHeight;
   double _yOffset = 0;
   double? _avatarTopOffset;
   double? _avatarLeftOffset;
+  double bgZoom = 1.5;
 
-  List<CustomPathModel> customPathData = [
-    CustomPathModel(pathType: PathType.move, cords: [0.6, 1], slide: 1),
-    CustomPathModel(
-        pathType: PathType.cubic,
-        cords: [0.94, 0.92, 1, 0.78, 0.5, 0.775],
-        slide: 1),
-    CustomPathModel(
-        pathType: PathType.cubic,
-        cords: [0.15, 0.775, 0, 0.7, 0.5, 0.64],
-        slide: 1),
-    CustomPathModel(
-        pathType: PathType.cubic,
-        cords: [1, 0.59, 0.95, 0.6, 0.8, 0.48],
-        slide: 1),
-    CustomPathModel(
-        pathType: PathType.quadratic, cords: [0.8, 0.43, 0.7, 0.42], slide: 1),
-    CustomPathModel(
-        pathType: PathType.quadratic,
-        cords: [0.65, 0.35, 0.45, 0.35],
-        slide: 1),
-    CustomPathModel(
-        pathType: PathType.cubic,
-        cords: [0.15, 0.35, 0, 0.22, 0.5, 0.2],
-        slide: 1),
-    CustomPathModel(
-        pathType: PathType.cubic,
-        cords: [1, 0.18, 1.05, 0.02, 0.6, 0],
-        slide: 1),
+  List<List<CustomPathModel>>? customPathData = [
+    [
+      CustomPathModel(pathType: PathType.move, cords: [0.5, 0.88], slide: 1),
+    ],
+    [
+      CustomPathModel(pathType: PathType.linear, cords: [0.3, 0.73], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.2, 0.7], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.33, 0.66], slide: 1),
+    ],
+    [
+      CustomPathModel(pathType: PathType.linear, cords: [0.5, 0.59], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.67, 0.47], slide: 1),
+    ],
+    [
+      CustomPathModel(
+          pathType: PathType.linear, cords: [0.74, 0.445], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.4, 0.34], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.26, 0.3], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.26, 0.2], slide: 1),
+    ],
+    [
+      CustomPathModel(pathType: PathType.linear, cords: [0.2, 0.18], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.72, 0.12], slide: 1),
+    ],
+    [
+      CustomPathModel(pathType: PathType.linear, cords: [0.8, 0.09], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.5, 0.0], slide: 1),
+      CustomPathModel(pathType: PathType.linear, cords: [0.44, 0.98], slide: 2),
+    ],
+    [
+      CustomPathModel(pathType: PathType.linear, cords: [0.35, 0.95], slide: 2),
+      CustomPathModel(pathType: PathType.linear, cords: [0.7, 0.835], slide: 2),
+    ]
   ];
 
   @override
   void initState() {
     fullBGHeight = bgHeight * noOfSlides;
-    _avatarTopOffset = fullBGHeight! - 60;
+    _avatarTopOffset = fullBGHeight! - SizeConfig.height! * 0.12;
     _avatarLeftOffset = SizeConfig.width! / 2;
     _mainController = ScrollController();
     _controller = AnimationController(
@@ -74,12 +83,19 @@ class CustomPathState extends State<CustomPath>
         setState(() {});
         _avatarLeftOffset = calculateX(_animation!.value).dx;
         _avatarTopOffset = calculateY(_animation!.value).dy;
-        _mainController!.animateTo(_yOffset - SizeConfig.height! / 2,
-            duration: const Duration(seconds: 14), curve: Curves.linear);
+        // _mainController!.animateTo(_yOffset - SizeConfig.height! / 2,
+        //     duration: const Duration(seconds: 14), curve: Curves.linear);
       });
     log(SizeConfig.height.toString());
     log(SizeConfig.width.toString());
     _path = drawPath();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      _mainController!.animateTo(_mainController!.position.maxScrollExtent,
+          duration: const Duration(seconds: 3), curve: Curves.easeInCubic);
+      setState(() {
+        bgZoom = 1;
+      });
+    });
   }
 
   @override
@@ -99,30 +115,23 @@ class CustomPathState extends State<CustomPath>
         child: SingleChildScrollView(
           controller: _mainController,
           physics: const ClampingScrollPhysics(),
-          reverse: true,
+          // reverse: true,
           child: Container(
             height: fullBGHeight,
             width: SizeConfig.width,
             color: Colors.black,
             child: Stack(
               children: [
-                SizedBox(
-                  height: fullBGHeight,
-                  width: SizeConfig.width,
-                  child: ListView.builder(
-                      reverse: true,
-                      padding: EdgeInsets.zero,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 4,
-                      itemBuilder: (ctx, i) {
-                        return SvgPicture.asset(
-                          i % 2 == 0
-                              ? "assets/custompathassets/bg1.svg"
-                              : "assets/custompathassets/bg2.svg",
-                          width: bgWidth,
-                          height: bgHeight,
-                        );
-                      }),
+                AnimatedScale(
+                  alignment: Alignment.center,
+                  duration: const Duration(seconds: 3),
+                  curve: Curves.easeOutCubic,
+                  scale: bgZoom,
+                  child: Background(
+                      fullBGHeight: fullBGHeight,
+                      noOfSlides: noOfSlides,
+                      bgWidth: bgWidth,
+                      bgHeight: bgHeight),
                 ),
                 Positioned(
                   bottom: 0,
@@ -132,75 +141,12 @@ class CustomPathState extends State<CustomPath>
                     painter: PathPainter(_path!),
                   ),
                 ),
-                Positioned(
-                  child: GestureDetector(
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            duration: Duration(seconds: 2),
-                            content: Text("You Tapped a Tree"),
-                          ),
-                        );
-                      },
-                      child:
-                          SvgPicture.asset("assets/custompathassets/tree.svg")),
-                  bottom: bgHeight * 1 * 0.1,
-                  left: SizeConfig.width! * 0.05,
-                ),
-                Positioned(
-                  child: GestureDetector(
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            duration: Duration(seconds: 2),
-                            content: Text("You journey starts here!!"),
-                          ),
-                        );
-                      },
-                      child: SvgPicture.asset(
-                          "assets/custompathassets/board.svg")),
-                  bottom: bgHeight * 1 * 0.05,
-                  left: SizeConfig.width! * 0.5,
-                ),
-                Positioned(
-                  child: GestureDetector(
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            duration: Duration(seconds: 2),
-                            content: Text("This is a flower"),
-                          ),
-                        );
-                      },
-                      child: Lottie.asset("assets/lotties/flower.json",
-                          height: SizeConfig.width! * 0.24)),
-                  bottom: bgHeight * 1 * 0.4,
-                  left: SizeConfig.width! * 0.5,
-                ),
-                Positioned(
-                  child: GestureDetector(
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            duration: Duration(seconds: 2),
-                            content: Text("This is a plant"),
-                          ),
-                        );
-                      },
-                      child: Lottie.asset("assets/lotties/plant.json",
-                          height: SizeConfig.width! * 0.32)),
-                  bottom: bgHeight * 1 * 0.45,
-                  left: SizeConfig.width! * 0.1,
-                ),
-                Positioned(
-                  top: _avatarTopOffset,
-                  left: _avatarLeftOffset,
-                  child: const CircleAvatar(
-                    radius: 25,
-                    backgroundImage: NetworkImage(
-                        "https://firebasestorage.googleapis.com/v0/b/fello-dev-station.appspot.com/o/test%2Favatar.png?alt=media&token=bab2c849-7694-41c4-9c34-1ab022799bfd"),
-                  ),
-                ),
+                const CustomPath(),
+                const Milestones(),
+                Avatar(
+                  vPos: calculateY(_animation!.value).dy,
+                  hPos: calculateX(_animation!.value).dx,
+                )
               ],
             ),
           ),
@@ -221,9 +167,11 @@ class CustomPathState extends State<CustomPath>
     double screenHeight = fullBGHeight! / noOfSlides;
     // Size size = Size(screenWidth!, screenHeight);
     Path path = Path();
-    for (int i = 0; i < customPathData.length; i++) {
-      path = generateCustomPath(
-          path, customPathData[i], screenHeight, screenWidth, noOfSlides);
+    for (int i = 0; i < customPathData!.length; i++) {
+      for (int j = 0; j < customPathData![i].length; j++) {
+        path = generateCustomPath(
+            path, customPathData![i][j], screenHeight, screenWidth, noOfSlides);
+      }
     }
     return path;
   }
@@ -232,6 +180,10 @@ class CustomPathState extends State<CustomPath>
       double screenWidth, int slides) {
     switch (model.pathType) {
       case PathType.linear:
+        path.lineTo(
+            screenWidth * model.cords[0],
+            screenHeight * (slides - model.slide).abs() +
+                screenHeight * model.cords[1]);
         return path;
       case PathType.arc:
         return path;
@@ -289,6 +241,42 @@ class CustomPathState extends State<CustomPath>
   }
 }
 
+class Background extends StatelessWidget {
+  const Background({
+    Key? key,
+    required this.fullBGHeight,
+    required this.noOfSlides,
+    required this.bgWidth,
+    required this.bgHeight,
+  }) : super(key: key);
+
+  final double? fullBGHeight;
+  final int noOfSlides;
+  final double? bgWidth, bgHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: fullBGHeight,
+      width: SizeConfig.width,
+      child: ListView.builder(
+          reverse: true,
+          padding: EdgeInsets.zero,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: noOfSlides,
+          itemBuilder: (ctx, i) {
+            return Image.asset(
+              "assets/custompathassets/bg.png",
+              // color: Colors.grey,
+              fit: BoxFit.cover,
+              width: bgWidth,
+              height: bgHeight,
+            );
+          }),
+    );
+  }
+}
+
 class PathPainter extends CustomPainter {
   Path path;
 
@@ -297,7 +285,7 @@ class PathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.red
+      ..color = Colors.transparent
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1.0;
@@ -307,4 +295,205 @@ class PathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class CustomPath extends StatelessWidget {
+  const CustomPath({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+            child: CustomPaint(
+              size: const Size(94.007, 80.992),
+              painter: JointerPainter(
+                // shadowColor: const Color(0xff5A4A33),
+                // ladderPrimaryColor: const Color(0xffF79780),
+                // ladderSecondaryColor: const Color(0xffFFD4AC),
+                shadowColor: Colors.grey,
+                gradColor1: Colors.amber,
+                gradColor2: Colors.amberAccent,
+              ),
+            ),
+            // Image.asset("assets/custompathassets/jointer.png"),
+            bottom: 193,
+            left: SizeConfig.width! * 0.14),
+        Positioned(
+          child: CustomPaint(
+            size: Size(
+                SizeConfig.width! * 0.22,
+                (SizeConfig.width! * 0.22 * 1.4428497884255596)
+                    .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+            painter: LadderPainter(
+              shadowColor: const Color(0xff5A4A33),
+              ladderPrimaryColor: const Color(0xffF79780),
+              ladderSecondaryColor: const Color(0xffFFD4AC),
+              // shadowColor: Colors.grey,
+              // ladderPrimaryColor: Colors.amber,
+              // ladderSecondaryColor: Colors.amberAccent,
+            ),
+          ),
+          //Image.asset("assets/custompathassets/ladder1.png"),
+          bottom: 93,
+          left: SizeConfig.width! * 0.122,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/base.png"),
+          bottom: 50,
+          left: SizeConfig.width! / 2.6,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/path1.png"),
+          bottom: 315,
+          left: 140,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/base4.png"),
+          bottom: 495,
+          left: 83,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/path2.png"),
+          bottom: 435,
+          left: 140,
+        ),
+        Positioned(
+          // child: CustomPaint(
+          //   size: Size(SizeConfig.width! * 0.2,
+          //       (SizeConfig.width! * 0.2 * 0.6585365853658537).toDouble()),
+          //   painter: BigStagePainter(
+          //       stageColor: Colors.green, shadowColor: Colors.black
+          //       //  stageColor: Color(0xff1ADAB7),
+          //       // shadowColor: Color(0xff232326)
+          //       ),
+          // ),
+          child: Image.asset("assets/custompathassets/base2.png"),
+          bottom: 240,
+          left: 80,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/base3.png"),
+          bottom: 400,
+          left: 230,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/ladder2.png"),
+          bottom: 550,
+          left: 90,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/base5.png"),
+          bottom: 615,
+          left: 5,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/pebbles.png"),
+          bottom: 650,
+          left: 100,
+        ),
+        Positioned(
+          child: Transform(
+            alignment: Alignment.center,
+            child: Image.asset("assets/custompathassets/path2.png"),
+            transform: Matrix4.rotationY(math.pi),
+          ),
+          bottom: 835,
+          left: 140,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/base6.png"),
+          bottom: 755,
+          left: 25,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/path2.png"),
+          bottom: 725,
+          left: 155,
+        ),
+        Positioned(
+          child: Transform.scale(
+            scale: 0.8,
+            child: Image.asset("assets/custompathassets/base2.png"),
+          ),
+          bottom: 660,
+          left: 230,
+        ),
+      ],
+    );
+  }
+}
+
+class Milestones extends StatelessWidget {
+  const Milestones({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          child: GestureDetector(
+              onTap: () {
+                print("You tapped level 0");
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("You tapped level 0")));
+              },
+              child: Image.asset("assets/custompathassets/ml0.png")),
+          bottom: 95,
+          left: SizeConfig.width! / 2.1,
+        ),
+        const ActiveFloatingMilestone(
+          png: "assets/custompathassets/ml1.png",
+          dy: 280,
+          dx: 135,
+        ),
+        const ActiveFloatingMilestone(
+          png: "assets/custompathassets/ml2.png",
+          dy: 430,
+          dx: 260,
+        ),
+        const ActiveRotatingMilestone(
+          png: "assets/custompathassets/ml3.png",
+          dy: 520,
+          dx: 105,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/ml4.png"),
+          bottom: 640,
+          left: 40,
+        ),
+        const ActiveFloatingMilestone(
+          png: "assets/custompathassets/ml5.png",
+          dy: 700,
+          dx: 280,
+        ),
+        Positioned(
+          child: Image.asset("assets/custompathassets/ml6.png"),
+          bottom: 820,
+          left: 70,
+        ),
+      ],
+    );
+  }
+}
+
+class Avatar extends StatelessWidget {
+  final double hPos, vPos;
+  const Avatar({Key? key, required this.hPos, required this.vPos})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: vPos,
+      left: hPos,
+      child: const IgnorePointer(
+        ignoring: true,
+        child: CircleAvatar(
+          radius: 25,
+          backgroundImage: NetworkImage(
+              "https://firebasestorage.googleapis.com/v0/b/fello-dev-station.appspot.com/o/test%2Favatar.png?alt=media&token=bab2c849-7694-41c4-9c34-1ab022799bfd"),
+        ),
+      ),
+    );
+  }
 }
