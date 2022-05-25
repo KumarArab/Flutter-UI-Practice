@@ -13,3 +13,20 @@ class CustomPathModel {
     required this.slide,
   });
 }
+
+class MilestonesModel {
+  final String asset;
+  final double dx, dy;
+  final List<int> rewards;
+  final String description;
+  final String route;
+  MilestonesModel(
+      this.asset, this.dx, this.dy, this.rewards, this.description, this.route);
+}
+
+class PathItemModel {
+  final String asset;
+  final double dx, dy;
+  final int dz;
+  PathItemModel(this.asset, this.dx, this.dy, this.dz);
+}

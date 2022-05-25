@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/UIs/test/Custom%20Path/custom_path.dart';
-import 'package:testapp/UIs/test/Custom%20Path/infinite_scroll_bg.dart';
-import 'package:testapp/UIs/test/Custom%20Path/rotating_loader.dart';
-import 'package:testapp/UIs/test/Custom%20Path/vertical_path.dart';
+import 'package:testapp/UIs/test/other_tests/infinite_scroll_bg.dart';
+import 'package:testapp/UIs/test/other_tests/rotating_loader.dart';
 import 'package:testapp/UIs/test/stack_overflow/slider_swiper.dart';
 import 'package:testapp/UIs/test/test_widgets/draggable_container_top.dart';
+import 'package:testapp/UIs/test/time_machine.dart';
 
 class TestView extends StatelessWidget {
   const TestView({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class TestView extends StatelessWidget {
             title: const Text("Custom Path"),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (ctx) => const CustomPath(),
+                builder: (ctx) => const JourneyScreen(),
               ),
             ),
           ),
@@ -77,18 +77,18 @@ class TestView extends StatelessWidget {
               ),
             ),
           ),
-          //  ListTile(
-          //   leading: const Icon(
-          //     Icons.circle,
-          //     color: Colors.orange,
-          //   ),
-          //   title: const Text("Flutter Tree"),
-          //   onTap: () => Navigator.of(context).push(
-          //     MaterialPageRoute(
-          //       builder: (ctx) => const Demo(),
-          //     ),
-          //   ),
-          // ),
+          ListTile(
+            leading: const Icon(
+              Icons.circle,
+              color: Colors.orange,
+            ),
+            title: const Text("Time machine"),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (ctx) => TimeMachine(),
+              ),
+            ),
+          ),
         ],
       ),
     );
