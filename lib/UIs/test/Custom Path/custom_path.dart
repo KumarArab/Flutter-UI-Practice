@@ -56,6 +56,33 @@ class CustomPathState extends State<CustomPath>
         pathType: PathType.cubic,
         cords: [1, 0.18, 1.05, 0.02, 0.6, 0],
         slide: 1),
+    //newpath
+    CustomPathModel(
+        pathType: PathType.cubic,
+        cords: [0.94, 0.92, 1, 0.78, 0.5, 0.775],
+        slide: 2),
+    CustomPathModel(
+        pathType: PathType.cubic,
+        cords: [0.15, 0.775, 0, 0.7, 0.5, 0.64],
+        slide: 2),
+    CustomPathModel(
+        pathType: PathType.cubic,
+        cords: [1, 0.59, 0.95, 0.6, 0.8, 0.48],
+        slide: 2),
+    CustomPathModel(
+        pathType: PathType.quadratic, cords: [0.8, 0.43, 0.7, 0.42], slide: 2),
+    CustomPathModel(
+        pathType: PathType.quadratic,
+        cords: [0.65, 0.35, 0.45, 0.35],
+        slide: 2),
+    CustomPathModel(
+        pathType: PathType.cubic,
+        cords: [0.15, 0.35, 0, 0.22, 0.5, 0.2],
+        slide: 2),
+    CustomPathModel(
+        pathType: PathType.cubic,
+        cords: [1, 0.18, 1.05, 0.02, 0.6, 0],
+        slide: 2),
   ];
 
   @override
@@ -69,14 +96,19 @@ class CustomPathState extends State<CustomPath>
         duration: const Duration(seconds: 10),
         animationBehavior: AnimationBehavior.preserve);
     super.initState();
-    _animation = Tween(begin: 0.0, end: 1.0).animate(_controller!)
-      ..addListener(() {
+    _animation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller!, curve: Curves.easeOutCubic),
+    )..addListener(() {
         setState(() {});
         _avatarLeftOffset = calculateX(_animation!.value).dx;
         _avatarTopOffset = calculateY(_animation!.value).dy;
         _mainController!.animateTo(_yOffset - SizeConfig.height! / 2,
-            duration: const Duration(seconds: 14), curve: Curves.linear);
+            duration: const Duration(seconds: 10), curve: Curves.linear);
       });
+
+    _mainController!.addListener(() {
+      log((_mainController!.offset + SizeConfig.height!).toString());
+    });
     log(SizeConfig.height.toString());
     log(SizeConfig.width.toString());
     _path = drawPath();
