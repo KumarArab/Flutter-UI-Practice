@@ -8,6 +8,7 @@ import 'package:testapp/UIs/test/Custom%20Path/path_painters.dart';
 import 'package:testapp/UIs/test/Custom%20Path/stage_painters.dart';
 import 'package:testapp/utils/size_config.dart';
 import 'dart:math' as math;
+import 'package:flutter_svg/flutter_svg.dart';
 
 class JourneyScreen extends StatefulWidget {
   const JourneyScreen({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class JourneyScreenState extends State<JourneyScreen>
   Path? _path;
   final noOfSlides = 2;
   final bgWidth = SizeConfig.width;
-  final bgHeight = SizeConfig.width! * 2.04;
+  final bgHeight = SizeConfig.width! * 2.165;
   double? fullBGHeight;
   double _yOffset = 0;
   double? _avatarTopOffset;
@@ -138,6 +139,8 @@ class JourneyScreenState extends State<JourneyScreen>
                       bgWidth: bgWidth,
                       bgHeight: bgHeight),
                 ),
+                CustomPath(),
+                const Milestones(),
                 Positioned(
                   bottom: 0,
                   left: 0,
@@ -146,12 +149,19 @@ class JourneyScreenState extends State<JourneyScreen>
                     painter: PathPainter(_path!),
                   ),
                 ),
-                const CustomPath(),
-                const Milestones(),
                 Avatar(
                   vPos: calculateY(_animation!.value).dy,
                   hPos: calculateX(_animation!.value).dx,
-                )
+                ),
+                // Positioned(
+                //   left: bgWidth! * 0.3653,
+                //   bottom: bgHeight * 0.0996,
+                //   child: Container(
+                //     height: 200,
+                //     width: 1,
+                //     color: Colors.red,
+                //   ),
+                // )
               ],
             ),
           ),
@@ -290,7 +300,7 @@ class PathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.transparent
+      ..color = Colors.red
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1.0;
@@ -303,128 +313,284 @@ class PathPainter extends CustomPainter {
 }
 
 class CustomPath extends StatelessWidget {
-  const CustomPath({Key? key}) : super(key: key);
+  CustomPath({Key? key}) : super(key: key);
+
+  final bgWidth = SizeConfig.width;
+  final bgHeight = SizeConfig.width! * 2.165;
+  final List<PathItemModel> _customPathItemsList = [
+    PathItemModel(
+      asset: "assets/custompathassets/base1.svg",
+      colors: [],
+      dx: 0.3653,
+      dy: 0.0966,
+      page: 1,
+      width: 0.2873,
+      height: 0.0985,
+      dz: 2,
+      level: 1,
+      isBase: true,
+      source: "AST",
+      type: "SVG",
+    ),
+    PathItemModel(
+      asset: "assets/custompathassets/ladder_f.svg",
+      colors: [Colors.grey, Colors.amber, Colors.amberAccent],
+      dx: 0.0992,
+      dy: 0.1527,
+      page: 1,
+      width: 0.5262,
+      height: 0.1551,
+      dz: 1,
+      level: 1,
+      isBase: true,
+      source: "AST",
+      type: 'SVG',
+    ),
+    PathItemModel(
+      asset: "assets/custompathassets/p2.svg", // "jointer",
+      colors: const [
+        Color(0xff5A4A33),
+        Color(0xffF79780),
+        Color(0xffFFD4AC),
+      ],
+      dx: 0.108,
+      dy: 0.2762,
+      page: 1,
+      width: 0.2674,
+      height: 0.0991,
+      dz: 0,
+      level: 1,
+      isBase: true,
+      source: "AST",
+      type: 'SVG',
+    ),
+    PathItemModel(
+      asset: "assets/custompathassets/base2.svg",
+      colors: [],
+      dx: 0.235,
+      dy: 0.328,
+      page: 1,
+      width: 0.435,
+      height: 0.1314,
+      dz: 2,
+      level: 1,
+      isBase: true,
+      source: "AST",
+      type: 'SVG',
+    ),
+    PathItemModel(
+      asset: "assets/custompathassets/p3.svg",
+      colors: [],
+      dx: 0.4026,
+      dy: 0.4174,
+      page: 1,
+      width: 0.4905,
+      height: 0.1429,
+      dz: 2,
+      level: 1,
+      isBase: true,
+      source: "AST",
+      type: 'SVG',
+    ),
+  ];
+
+  getChild(PathItemModel item) {
+    log(item.height.toString());
+    log(item.width.toString());
+    switch (item.type) {
+      case "SVG":
+        return item.source == "NTWRK"
+            ? SvgPicture.network(
+                item.asset!,
+                height: item.height,
+                width: item.width,
+              )
+            : SvgPicture.asset(
+                item.asset!,
+                width: bgWidth! * item.width!,
+                height: bgHeight * item.height!,
+              );
+      case "PNG":
+        return item.source == "NTWRK"
+            ? Image.network(
+                item.asset!,
+                height: item.height,
+                width: item.width,
+              )
+            : Image.asset(
+                item.asset!,
+                width: bgWidth! * item.width!,
+                height: bgHeight * item.height!,
+              );
+      case "CSP":
+        return CustomPaint(
+          size: Size(bgWidth! * item.width!, bgHeight * item.height!),
+          painter: getPainter(item),
+        );
+    }
+  }
+
+  getPainter(PathItemModel item) {
+    switch (item.asset) {
+      case "jointer":
+        return JointerPainter(
+          // shadowColor: const Color(0xff5A4A33),
+          // ladderPrimaryColor: const Color(0xffF79780),
+          // ladderSecondaryColor: const Color(0xffFFD4AC),
+          shadowColor: item.colors?[0],
+          gradColor1: item.colors?[1],
+          gradColor2: item.colors?[2],
+        );
+      case "ladder":
+        return LadderPainter(
+          shadowColor: item.colors?[0], //const Color(0xff5A4A33),
+          ladderPrimaryColor: item.colors?[1], //const Color(0xffF79780),
+          ladderSecondaryColor: item.colors?[2], //const Color(0xffFFD4AC),
+          // shadowColor: Colors.grey,
+          // ladderPrimaryColor: Colors.amber,
+          // ladderSecondaryColor: Colors.amberAccent,
+        );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    _customPathItemsList.sort((a, b) => a.dz!.compareTo(b.dz!));
     return Stack(
-      children: [
-        Positioned(
-            child: CustomPaint(
-              size: const Size(94.007, 80.992),
-              painter: JointerPainter(
-                // shadowColor: const Color(0xff5A4A33),
-                // ladderPrimaryColor: const Color(0xffF79780),
-                // ladderSecondaryColor: const Color(0xffFFD4AC),
-                shadowColor: Colors.grey,
-                gradColor1: Colors.amber,
-                gradColor2: Colors.amberAccent,
-              ),
+      children: List.generate(
+        _customPathItemsList.length,
+        (i) => Positioned(
+          left: bgWidth! * _customPathItemsList[i].dx!,
+          bottom: bgHeight * _customPathItemsList[i].dy!,
+          child: Container(
+            width: bgWidth! * _customPathItemsList[i].width!,
+            height: bgHeight * _customPathItemsList[i].height!,
+            decoration: BoxDecoration(
+              //color: i == 0 ? Colors.red : Colors.blue,
+              borderRadius: BorderRadius.circular(10),
             ),
-            // Image.asset("assets/custompathassets/jointer.png"),
-            bottom: 193,
-            left: SizeConfig.width! * 0.14),
-        Positioned(
-          child: CustomPaint(
-            size: Size(
-                SizeConfig.width! * 0.22,
-                (SizeConfig.width! * 0.22 * 1.4428497884255596)
-                    .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-            painter: LadderPainter(
-              shadowColor: const Color(0xff5A4A33),
-              ladderPrimaryColor: const Color(0xffF79780),
-              ladderSecondaryColor: const Color(0xffFFD4AC),
-              // shadowColor: Colors.grey,
-              // ladderPrimaryColor: Colors.amber,
-              // ladderSecondaryColor: Colors.amberAccent,
-            ),
+            alignment: Alignment.bottomCenter,
+            child: getChild(_customPathItemsList[i]),
           ),
-          //Image.asset("assets/custompathassets/ladder1.png"),
-          bottom: 93,
-          left: SizeConfig.width! * 0.122,
         ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/base.png"),
-          bottom: 50,
-          left: SizeConfig.width! / 2.6,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/path1.png"),
-          bottom: 315,
-          left: 140,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/base4.png"),
-          bottom: 495,
-          left: 83,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/path2.png"),
-          bottom: 435,
-          left: 140,
-        ),
-        Positioned(
-          // child: CustomPaint(
-          //   size: Size(SizeConfig.width! * 0.2,
-          //       (SizeConfig.width! * 0.2 * 0.6585365853658537).toDouble()),
-          //   painter: BigStagePainter(
-          //       stageColor: Colors.green, shadowColor: Colors.black
-          //       //  stageColor: Color(0xff1ADAB7),
-          //       // shadowColor: Color(0xff232326)
-          //       ),
-          // ),
-          child: Image.asset("assets/custompathassets/base2.png"),
-          bottom: 240,
-          left: 80,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/base3.png"),
-          bottom: 400,
-          left: 230,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/ladder2.png"),
-          bottom: 550,
-          left: 90,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/base5.png"),
-          bottom: 615,
-          left: 5,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/pebbles.png"),
-          bottom: 650,
-          left: 100,
-        ),
-        Positioned(
-          child: Transform(
-            alignment: Alignment.center,
-            child: Image.asset("assets/custompathassets/path2.png"),
-            transform: Matrix4.rotationY(math.pi),
-          ),
-          bottom: 835,
-          left: 140,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/base6.png"),
-          bottom: 755,
-          left: 25,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/path2.png"),
-          bottom: 725,
-          left: 155,
-        ),
-        Positioned(
-          child: Transform.scale(
-            scale: 0.8,
-            child: Image.asset("assets/custompathassets/base2.png"),
-          ),
-          bottom: 660,
-          left: 230,
-        ),
-      ],
+      ),
+      //  [
+      //   Positioned(
+      //       child: CustomPaint(
+      //         size: const Size(94.007, 80.992),
+      //         painter: JointerPainter(
+      //           // shadowColor: const Color(0xff5A4A33),
+      //           // ladderPrimaryColor: const Color(0xffF79780),
+      //           // ladderSecondaryColor: const Color(0xffFFD4AC),
+      //           shadowColor: Colors.grey,
+      //           gradColor1: Colors.amber,
+      //           gradColor2: Colors.amberAccent,
+      //         ),
+      //       ),
+      //       // Image.asset("assets/custompathassets/jointer.png"),
+      //       bottom: 193,
+      //       left: SizeConfig.width! * 0.14),
+      //   Positioned(
+      //     child: CustomPaint(
+      //       size: Size(
+      //           SizeConfig.width! * 0.22,
+      //           (SizeConfig.width! * 0.22 * 1.4428497884255596)
+      //               .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+      //       painter: LadderPainter(
+      //         shadowColor: const Color(0xff5A4A33),
+      //         ladderPrimaryColor: const Color(0xffF79780),
+      //         ladderSecondaryColor: const Color(0xffFFD4AC),
+      //         // shadowColor: Colors.grey,
+      //         // ladderPrimaryColor: Colors.amber,
+      //         // ladderSecondaryColor: Colors.amberAccent,
+      //       ),
+      //     ),
+      //     //Image.asset("assets/custompathassets/ladder1.png"),
+      //     bottom: 93,
+      //     left: SizeConfig.width! * 0.122,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/base.png"),
+      //     bottom: 50,
+      //     left: SizeConfig.width! / 2.6,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/path1.png"),
+      //     bottom: 315,
+      //     left: 140,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/base4.png"),
+      //     bottom: 495,
+      //     left: 83,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/path2.png"),
+      //     bottom: 435,
+      //     left: 140,
+      //   ),
+      //   Positioned(
+      //     // child: CustomPaint(
+      //     //   size: Size(SizeConfig.width! * 0.2,
+      //     //       (SizeConfig.width! * 0.2 * 0.6585365853658537).toDouble()),
+      //     //   painter: BigStagePainter(
+      //     //       stageColor: Colors.green, shadowColor: Colors.black
+      //     //       //  stageColor: Color(0xff1ADAB7),
+      //     //       // shadowColor: Color(0xff232326)
+      //     //       ),
+      //     // ),
+      //     child: Image.asset("assets/custompathassets/base2.png"),
+      //     bottom: 240,
+      //     left: 80,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/base3.png"),
+      //     bottom: 400,
+      //     left: 230,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/ladder2.png"),
+      //     bottom: 550,
+      //     left: 90,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/base5.png"),
+      //     bottom: 615,
+      //     left: 5,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/pebbles.png"),
+      //     bottom: 650,
+      //     left: 100,
+      //   ),
+      //   Positioned(
+      //     child: Transform(
+      //       alignment: Alignment.center,
+      //       child: Image.asset("assets/custompathassets/path2.png"),
+      //       transform: Matrix4.rotationY(math.pi),
+      //     ),
+      //     bottom: 835,
+      //     left: 140,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/base6.png"),
+      //     bottom: 755,
+      //     left: 25,
+      //   ),
+      //   Positioned(
+      //     child: Image.asset("assets/custompathassets/path2.png"),
+      //     bottom: 725,
+      //     left: 155,
+      //   ),
+      //   Positioned(
+      //     child: Transform.scale(
+      //       scale: 0.8,
+      //       child: Image.asset("assets/custompathassets/base2.png"),
+      //     ),
+      //     bottom: 660,
+      //     left: 230,
+      //   ),
+      // ],
     );
   }
 }

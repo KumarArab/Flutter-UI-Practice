@@ -25,8 +25,30 @@ class MilestonesModel {
 }
 
 class PathItemModel {
-  final String asset;
-  final double dx, dy;
-  final int dz;
-  PathItemModel(this.asset, this.dx, this.dy, this.dz);
+  final String? asset;
+  final double? dx, dy;
+  final double? height, width;
+  final int? dz;
+  final int? page;
+  final int? level;
+  final bool? isBase;
+  final String? type; // [PNG,SVG.CSP]
+  final List<Color>? colors;
+  final String? source; // [NWT, AST, FILE, RAW, MMRY]
+  PathItemModel(
+      {this.asset,
+      this.dx,
+      this.dy,
+      this.dz,
+      this.height,
+      this.width,
+      this.page,
+      this.level,
+      this.isBase,
+      this.source,
+      this.type,
+      this.colors});
 }
+
+enum AssetType { png, svg, csp }
+enum AssetSource { nwt, ast, file, raw, mmry }
