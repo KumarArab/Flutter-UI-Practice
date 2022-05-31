@@ -1,14 +1,14 @@
 import 'dart:developer';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:testapp/UIs/test/Custom%20Path/active_milestone.dart';
 import 'package:testapp/UIs/test/Custom%20Path/addons_path_painters.dart';
+import 'package:testapp/UIs/test/Custom%20Path/custom_path_data.dart';
 import 'package:testapp/UIs/test/Custom%20Path/custom_path_model.dart';
 import 'package:testapp/UIs/test/Custom%20Path/path_painters.dart';
-import 'package:testapp/UIs/test/Custom%20Path/stage_painters.dart';
 import 'package:testapp/utils/size_config.dart';
-import 'dart:math' as math;
-import 'package:flutter_svg/flutter_svg.dart';
 
 class JourneyScreen extends StatefulWidget {
   const JourneyScreen({Key? key}) : super(key: key);
@@ -25,54 +25,16 @@ class JourneyScreenState extends State<JourneyScreen>
   Animation? _animation;
   Path? _path;
   final noOfSlides = 2;
-  final bgWidth = SizeConfig.width;
-  final bgHeight = SizeConfig.width! * 2.165;
+  double? bgWidth = SizeConfig.width;
+  double? bgHeight = SizeConfig.width! * 2.165;
   double? fullBGHeight;
-  double _yOffset = 0;
-  double? _avatarTopOffset;
-  double? _avatarLeftOffset;
   double bgZoom = 1.5;
-
-  List<List<CustomPathModel>>? customPathData = [
-    [
-      CustomPathModel(pathType: PathType.move, cords: [0.5, 0.88], slide: 1),
-    ],
-    [
-      CustomPathModel(pathType: PathType.linear, cords: [0.3, 0.73], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.2, 0.7], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.33, 0.66], slide: 1),
-    ],
-    [
-      CustomPathModel(pathType: PathType.linear, cords: [0.5, 0.59], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.67, 0.47], slide: 1),
-    ],
-    [
-      CustomPathModel(
-          pathType: PathType.linear, cords: [0.74, 0.445], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.4, 0.34], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.26, 0.3], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.26, 0.2], slide: 1),
-    ],
-    [
-      CustomPathModel(pathType: PathType.linear, cords: [0.2, 0.18], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.72, 0.12], slide: 1),
-    ],
-    [
-      CustomPathModel(pathType: PathType.linear, cords: [0.8, 0.09], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.5, 0.0], slide: 1),
-      CustomPathModel(pathType: PathType.linear, cords: [0.44, 0.98], slide: 2),
-    ],
-    [
-      CustomPathModel(pathType: PathType.linear, cords: [0.35, 0.95], slide: 2),
-      CustomPathModel(pathType: PathType.linear, cords: [0.7, 0.835], slide: 2),
-    ]
-  ];
 
   @override
   void initState() {
-    fullBGHeight = bgHeight * noOfSlides;
-    _avatarTopOffset = fullBGHeight! - SizeConfig.height! * 0.12;
-    _avatarLeftOffset = SizeConfig.width! / 2;
+    fullBGHeight = bgHeight! * noOfSlides;
+    // _avatarTopOffset = fullBGHeight! - SizeConfig.height! * 0.12;
+    // _avatarLeftOffset = SizeConfig.width! / 2;
     _mainController = ScrollController();
     _controller = AnimationController(
         vsync: this,
@@ -83,8 +45,8 @@ class JourneyScreenState extends State<JourneyScreen>
       CurvedAnimation(parent: _controller!, curve: Curves.easeOutCubic),
     )..addListener(() {
         setState(() {});
-        _avatarLeftOffset = calculateX(_animation!.value).dx;
-        _avatarTopOffset = calculateY(_animation!.value).dy;
+        // _avatarLeftOffset = calculateX(_animation!.value).dx;
+        // _avatarTopOffset = calculateY(_animation!.value).dy;
         // _mainController!.animateTo(_yOffset - SizeConfig.height! / 2,
         //     duration: const Duration(seconds: 14), curve: Curves.linear);
       });
@@ -104,8 +66,15 @@ class JourneyScreenState extends State<JourneyScreen>
     });
   }
 
+  setDimensions(BuildContext context) {
+    bgHeight = MediaQuery.of(context).size.width * 2.165;
+    bgWidth = MediaQuery.of(context).size.width;
+    fullBGHeight = bgHeight! * noOfSlides;
+  }
+
   @override
   Widget build(BuildContext context) {
+    // setDimensions(context);
     return Scaffold(
       backgroundColor: Colors.black,
       floatingActionButton: FloatingActionButton(
@@ -134,13 +103,12 @@ class JourneyScreenState extends State<JourneyScreen>
                   curve: Curves.easeOutCubic,
                   scale: bgZoom,
                   child: Background(
-                      fullBGHeight: fullBGHeight,
-                      noOfSlides: noOfSlides,
-                      bgWidth: bgWidth,
-                      bgHeight: bgHeight),
+                    fullBGHeight: fullBGHeight,
+                    noOfSlides: noOfSlides,
+                    bgWidth: bgWidth,
+                    bgHeight: bgHeight,
+                  ),
                 ),
-                CustomPath(),
-                //const Milestones(),
                 Positioned(
                   bottom: 0,
                   left: 0,
@@ -149,19 +117,12 @@ class JourneyScreenState extends State<JourneyScreen>
                     painter: PathPainter(_path!),
                   ),
                 ),
+                CustomPath(),
+                Milestones(),
                 Avatar(
                   vPos: calculateY(_animation!.value).dy,
                   hPos: calculateX(_animation!.value).dx,
                 ),
-                // Positioned(
-                //   left: bgWidth! * 0.3653,
-                //   bottom: bgHeight * 0.0996,
-                //   child: Container(
-                //     height: 200,
-                //     width: 1,
-                //     color: Colors.red,
-                //   ),
-                // )
               ],
             ),
           ),
@@ -192,12 +153,12 @@ class JourneyScreenState extends State<JourneyScreen>
   }
 
   Path generateCustomPath(Path path, CustomPathModel model, double screenHeight,
-      double screenWidth, int slides) {
+      double screenWidth, int pages) {
     switch (model.pathType) {
       case PathType.linear:
         path.lineTo(
             screenWidth * model.cords[0],
-            screenHeight * (slides - model.slide).abs() +
+            screenHeight * (pages - model.page).abs() +
                 screenHeight * model.cords[1]);
         return path;
       case PathType.arc:
@@ -205,7 +166,7 @@ class JourneyScreenState extends State<JourneyScreen>
       case PathType.move:
         path.moveTo(
             screenWidth * model.cords[0],
-            screenHeight * (slides - model.slide).abs() +
+            screenHeight * (pages - model.page).abs() +
                 screenHeight * model.cords[1]);
         return path;
       case PathType.rect:
@@ -213,22 +174,22 @@ class JourneyScreenState extends State<JourneyScreen>
       case PathType.quadratic:
         path.quadraticBezierTo(
             screenWidth * model.cords[0],
-            screenHeight * (slides - model.slide).abs() +
+            screenHeight * (pages - model.page).abs() +
                 screenHeight * model.cords[1],
             screenWidth * model.cords[2],
-            screenHeight * (slides - model.slide).abs() +
+            screenHeight * (pages - model.page).abs() +
                 screenHeight * model.cords[3]);
         return path;
       case PathType.cubic:
         path.cubicTo(
             screenWidth * model.cords[0],
-            screenHeight * (slides - model.slide).abs() +
+            screenHeight * (pages - model.page).abs() +
                 screenHeight * model.cords[1],
             screenWidth * model.cords[2],
-            screenHeight * (slides - model.slide).abs() +
+            screenHeight * (pages - model.page).abs() +
                 screenHeight * model.cords[3],
             screenWidth * model.cords[4],
-            screenHeight * (slides - model.slide).abs() +
+            screenHeight * (pages - model.page).abs() +
                 screenHeight * model.cords[5]);
         return path;
       default:
@@ -239,7 +200,6 @@ class JourneyScreenState extends State<JourneyScreen>
   Offset calculateX(value) {
     PathMetrics pathMetrics = _path!.computeMetrics();
     PathMetric pathMetric = pathMetrics.elementAt(0);
-    // log(pathMetric.length.toString());
     value = pathMetric.length * value;
     Tangent? pos = pathMetric.getTangentForOffset(value);
     return pos!.position;
@@ -251,8 +211,7 @@ class JourneyScreenState extends State<JourneyScreen>
     log(pathMetric.toString());
     value = pathMetric.length * value;
     Tangent? pos = pathMetric.getTangentForOffset(value);
-    _yOffset = pos!.position.dy;
-    return pos.position;
+    return pos!.position;
   }
 }
 
@@ -303,7 +262,7 @@ class PathPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1.0;
 
-    canvas.drawPath(this.path, paint);
+    canvas.drawPath(path, paint);
   }
 
   @override
@@ -315,222 +274,6 @@ class CustomPath extends StatelessWidget {
 
   final bgWidth = SizeConfig.width;
   final bgHeight = SizeConfig.width! * 2.165;
-  final List<PathItemModel> _customPathItemsList = [
-    PathItemModel(
-      asset: "assets/custompathassets/base1.svg",
-      colors: [],
-      dx: 0.3653,
-      dy: 0.0966,
-      page: 1,
-      width: 0.2873,
-      height: 0.0985,
-      dz: 2,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: "SVG",
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/ladder_f.svg",
-      colors: [Colors.grey, Colors.amber, Colors.amberAccent],
-      dx: 0.0992,
-      dy: 0.1527,
-      page: 1,
-      width: 0.5262,
-      height: 0.1551,
-      dz: 1,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/p2.svg", // "jointer",
-      colors: const [
-        Color(0xff5A4A33),
-        Color(0xffF79780),
-        Color(0xffFFD4AC),
-      ],
-      dx: 0.108,
-      dy: 0.2762,
-      page: 1,
-      width: 0.2674,
-      height: 0.0991,
-      dz: 0,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/base2.svg",
-      colors: [],
-      dx: 0.235,
-      dy: 0.328,
-      page: 1,
-      width: 0.435,
-      height: 0.1314,
-      dz: 2,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/p3.svg",
-      colors: [],
-      dx: 0.4026,
-      dy: 0.4174,
-      page: 1,
-      width: 0.4905,
-      height: 0.1429,
-      dz: 1,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/base3.svg",
-      colors: [],
-      dx: 0.648,
-      dy: 0.521,
-      page: 1,
-      width: 0.2948,
-      height: 0.0894,
-      dz: 2,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/path4.svg",
-      colors: [],
-      dx: 0.3933,
-      dy: 0.5757,
-      page: 1,
-      width: 0.3674,
-      height: 0.1151,
-      dz: 1,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/base4.svg",
-      colors: [],
-      dx: 0.2426,
-      dy: 0.6511,
-      page: 1,
-      width: 0.2598,
-      height: 0.0847,
-      dz: 0,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/path5.svg",
-      colors: [],
-      dx: 0.2586,
-      dy: 0.713,
-      page: 1,
-      width: 0.0696,
-      height: 0.1046,
-      dz: 0,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/base5.svg",
-      colors: [],
-      dx: 0.0453,
-      dy: 0.7936,
-      page: 1,
-      width: 0.3378,
-      height: 0.0992,
-      dz: 0,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/path6.svg",
-      colors: [],
-      dx: 0.2533,
-      dy: 0.8559,
-      page: 1,
-      width: 0.4853,
-      height: 0.0677,
-      dz: 0,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/base6.svg",
-      colors: [],
-      dx: 0.6613,
-      dy: 0.8743,
-      page: 1,
-      width: 0.3386,
-      height: 0.1133,
-      dz: 4,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/path7.svg",
-      colors: [],
-      dx: 0.5013,
-      dy: 0.9362,
-      page: 1,
-      width: 0.2805,
-      height: 0.0822,
-      dz: 3,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/base7.svg",
-      colors: [],
-      dx: 0.128,
-      dy: 0.9381,
-      page: 1,
-      width: 0.4506,
-      height: 0.1328,
-      dz: 2,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-    PathItemModel(
-      asset: "assets/custompathassets/path8.svg",
-      colors: [],
-      dx: 0.4346,
-      dy: 1.0328,
-      page: 1,
-      width: 0.2961,
-      height: 0.0947,
-      dz: 1,
-      level: 1,
-      isBase: true,
-      source: "AST",
-      type: 'SVG',
-    ),
-  ];
 
   getChild(PathItemModel item) {
     log(item.height.toString());
@@ -593,22 +336,26 @@ class CustomPath extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _customPathItemsList.sort((a, b) => a.dz!.compareTo(b.dz!));
+    customPathItemsList.sort((a, b) => a.dz!.compareTo(b.dz!));
     return Stack(
       children: List.generate(
-        _customPathItemsList.length,
+        customPathItemsList.length,
         (i) => Positioned(
-          left: bgWidth! * _customPathItemsList[i].dx!,
-          bottom: bgHeight * _customPathItemsList[i].dy!,
+          left: bgWidth! * customPathItemsList[i].dx!,
+          bottom: bgHeight * customPathItemsList[i].dy!,
           child: Container(
-            width: bgWidth! * _customPathItemsList[i].width!,
-            height: bgHeight * _customPathItemsList[i].height!,
-            decoration: BoxDecoration(
-              //color: i == 0 ? Colors.red : Colors.blue,
-              borderRadius: BorderRadius.circular(10),
-            ),
+            width: bgWidth! * customPathItemsList[i].width!,
+            height: bgHeight * customPathItemsList[i].height!,
+            // decoration: BoxDecoration(
+            //   border: Border.all(
+            //     color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+            //         .withOpacity(1.0),
+            //     width: 1,
+            //   ),
+            //   // borderRadius: BorderRadius.circular(10),
+            // ),
             alignment: Alignment.bottomCenter,
-            child: getChild(_customPathItemsList[i]),
+            child: getChild(customPathItemsList[i]),
           ),
         ),
       ),
@@ -618,53 +365,26 @@ class CustomPath extends StatelessWidget {
 
 class Milestones extends StatelessWidget {
   const Milestones({Key? key}) : super(key: key);
+  getMilestoneType(MilestoneModel milestone) {
+    switch (milestone.animType) {
+      case "ROTATE":
+        return ActiveRotatingMilestone(milestone: milestone);
+      case "FLOAT":
+        return ActiveFloatingMilestone(milestone: milestone);
+      default:
+        return StaticMilestone(milestone: milestone);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
-        Positioned(
-          child: GestureDetector(
-              onTap: () {
-                print("You tapped level 0");
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("You tapped level 0")));
-              },
-              child: Image.asset("assets/custompathassets/ml0.png")),
-          bottom: 95,
-          left: SizeConfig.width! / 2.1,
+      children: List.generate(
+        milestones.length,
+        (i) => getMilestoneType(
+          milestones[i],
         ),
-        const ActiveFloatingMilestone(
-          png: "assets/custompathassets/ml1.png",
-          dy: 280,
-          dx: 135,
-        ),
-        const ActiveFloatingMilestone(
-          png: "assets/custompathassets/ml2.png",
-          dy: 430,
-          dx: 260,
-        ),
-        const ActiveRotatingMilestone(
-          png: "assets/custompathassets/ml3.png",
-          dy: 520,
-          dx: 105,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/ml4.png"),
-          bottom: 640,
-          left: 40,
-        ),
-        const ActiveFloatingMilestone(
-          png: "assets/custompathassets/ml5.png",
-          dy: 700,
-          dx: 280,
-        ),
-        Positioned(
-          child: Image.asset("assets/custompathassets/ml6.png"),
-          bottom: 820,
-          left: 70,
-        ),
-      ],
+      ),
     );
   }
 }

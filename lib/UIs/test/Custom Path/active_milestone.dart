@@ -1,12 +1,13 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:testapp/UIs/test/Custom%20Path/custom_path_model.dart';
 import 'package:testapp/utils/size_config.dart';
 
 class ActiveFloatingMilestone extends StatefulWidget {
-  final String? png, svg;
-  final double? dx, dy;
-  const ActiveFloatingMilestone({this.dx, this.dy, this.png, this.svg});
+  final MilestoneModel milestone;
+  const ActiveFloatingMilestone({Key? key, required this.milestone})
+      : super(key: key);
   @override
   _ActiveFloatingMilestoneState createState() =>
       _ActiveFloatingMilestoneState();
@@ -23,15 +24,16 @@ class _ActiveFloatingMilestoneState extends State<ActiveFloatingMilestone>
       vsync: this,
     );
 
-    _floatAnimation = Tween<Offset>(begin: Offset(0, 0), end: Offset(0.0, -0.2))
-        .animate(_floatAnimationController!)
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _floatAnimationController!.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          _floatAnimationController!.forward();
-        }
-      });
+    _floatAnimation =
+        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0.0, -0.2))
+            .animate(_floatAnimationController!)
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) {
+              _floatAnimationController!.reverse();
+            } else if (status == AnimationStatus.dismissed) {
+              _floatAnimationController!.forward();
+            }
+          });
     _floatAnimationController!.forward();
     super.initState();
   }
@@ -44,21 +46,27 @@ class _ActiveFloatingMilestoneState extends State<ActiveFloatingMilestone>
 
   @override
   Widget build(BuildContext context) {
+    final bgWidth = SizeConfig.width;
+    final bgHeight = SizeConfig.width! * 2.165;
     return Positioned(
-      bottom: widget.dy,
-      left: widget.dx,
+      left: bgWidth! * widget.milestone.dx!,
+      bottom: bgHeight * widget.milestone.dy!,
       child: SlideTransition(
         position: _floatAnimation!,
         child: GestureDetector(
           onTap: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                duration: Duration(seconds: 2),
-                content: Text("You Tapped a milestone"),
+              SnackBar(
+                duration: const Duration(seconds: 2),
+                content: Text(widget.milestone.description!),
               ),
             );
           },
-          child: Image.asset(widget.png!),
+          child: Image.asset(
+            widget.milestone.asset!,
+            width: bgWidth * widget.milestone.width!,
+            height: bgHeight * widget.milestone.height!,
+          ),
         ),
       ),
     );
@@ -66,9 +74,9 @@ class _ActiveFloatingMilestoneState extends State<ActiveFloatingMilestone>
 }
 
 class ActiveRotatingMilestone extends StatefulWidget {
-  final String? png, svg;
-  final double? dx, dy;
-  const ActiveRotatingMilestone({this.dx, this.dy, this.png, this.svg});
+  final MilestoneModel milestone;
+  const ActiveRotatingMilestone({Key? key, required this.milestone})
+      : super(key: key);
   @override
   _ActiveRotatingMilestoneState createState() =>
       _ActiveRotatingMilestoneState();
@@ -103,21 +111,57 @@ class _ActiveRotatingMilestoneState extends State<ActiveRotatingMilestone>
 
   @override
   Widget build(BuildContext context) {
+    final bgWidth = SizeConfig.width;
+    final bgHeight = SizeConfig.width! * 2.165;
     return Positioned(
-      bottom: widget.dy,
-      left: widget.dx,
+      left: bgWidth! * widget.milestone.dx!,
+      bottom: bgHeight * widget.milestone.dy!,
       child: RotationTransition(
         turns: _floatAnimationController!,
         child: GestureDetector(
           onTap: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                duration: Duration(seconds: 2),
-                content: Text("You Tapped first milestone"),
+              SnackBar(
+                duration: const Duration(seconds: 2),
+                content: Text(widget.milestone.description!),
               ),
             );
           },
-          child: Image.asset(widget.png!),
+          child: Image.asset(
+            widget.milestone.asset!,
+            width: bgWidth * widget.milestone.width!,
+            height: bgHeight * widget.milestone.height!,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class StaticMilestone extends StatelessWidget {
+  final MilestoneModel milestone;
+  const StaticMilestone({Key? key, required this.milestone}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final bgWidth = SizeConfig.width;
+    final bgHeight = SizeConfig.width! * 2.165;
+    return Positioned(
+      left: bgWidth! * milestone.dx!,
+      bottom: bgHeight * milestone.dy!,
+      child: GestureDetector(
+        onTap: () {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(milestone.description!)));
+        },
+        child: Tooltip(
+          message: milestone.description,
+          triggerMode: TooltipTriggerMode.longPress,
+          child: Image.asset(
+            milestone.asset!,
+            width: bgWidth * milestone.width!,
+            height: bgHeight * milestone.height!,
+          ),
         ),
       ),
     );
