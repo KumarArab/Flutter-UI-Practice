@@ -5,6 +5,7 @@ import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
 import 'package:testapp/UIs/test/test.dart';
 import 'package:testapp/utils/size_config.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +17,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
+    return DevicePreview(
+      enabled: true,
+      builder: (ctx) => MaterialApp(
+        title: 'Flutter Demo',
+        useInheritedMediaQuery: true,
+        theme: ThemeData(
+          primarySwatch: Colors.teal,
+        ),
+        home: const HomePage(),
       ),
-      home: const HomePage(),
     );
   }
 }

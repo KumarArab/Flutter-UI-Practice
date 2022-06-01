@@ -51,11 +51,11 @@ class JourneyScreenState extends State<JourneyScreen>
         //     duration: const Duration(seconds: 14), curve: Curves.linear);
       });
 
-    _mainController!.addListener(() {
-      log((_mainController!.offset + SizeConfig.height!).toString());
-    });
-    log(SizeConfig.height.toString());
-    log(SizeConfig.width.toString());
+    // _mainController!.addListener(() {
+    //   log((_mainController!.offset + SizeConfig.height!).toString());
+    // });
+    log("Screen: Height: ${SizeConfig.height}");
+    log("Screen Width: ${SizeConfig.width}");
     _path = drawPath();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       _mainController!.animateTo(_mainController!.position.maxScrollExtent,
@@ -208,7 +208,7 @@ class JourneyScreenState extends State<JourneyScreen>
   Offset calculateY(value) {
     PathMetrics pathMetrics = _path!.computeMetrics();
     PathMetric pathMetric = pathMetrics.elementAt(0);
-    log(pathMetric.toString());
+    // log(pathMetric.toString());
     value = pathMetric.length * value;
     Tangent? pos = pathMetric.getTangentForOffset(value);
     return pos!.position;
@@ -276,8 +276,8 @@ class CustomPath extends StatelessWidget {
   final bgHeight = SizeConfig.width! * 2.165;
 
   getChild(PathItemModel item) {
-    log(item.height.toString());
-    log(item.width.toString());
+    // log(item.height.toString());
+    // log(item.width.toString());
     switch (item.type) {
       case "SVG":
         return item.source == "NTWRK"
