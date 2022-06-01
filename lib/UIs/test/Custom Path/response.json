@@ -1,0 +1,164 @@
+{
+    "message": "Successful Request",
+    "data": [
+        {
+            "key": "page_1",
+            "paths": [
+                {
+                    "isBase": false,
+                    "x": 1,
+                    "y": 2,
+                    "z": 1,
+                    "alignment": "left",
+                    "milestoneIndex": 1,
+                    "assetRef": "1",
+                    "asset": {
+                        "assetType": "csp",
+                        "width": 1,
+                        "animType": "bounce",
+                        "height": 1,
+                        "uri": "asdasd"
+                    }
+                }
+            ],
+            "background": {
+                "uri": "asdasd",
+                "width": 1,
+                "height": 1,
+                "animType": "bounce",
+                "assetType": "csp"
+            },
+            "milestones": [
+                {
+                    "actionUri": "asd",
+                    "x": 23,
+                    "y": 22,
+                    "alignment": "left",
+                    "asset": {
+                        "uri": "asdasd",
+                        "animType": "bounce",
+                        "assetType": "csp",
+                        "height": 1,
+                        "width": 1
+                    },
+                    "toolTip": "asd"
+                }
+            ],
+            "avatarPath": [
+                {
+                    "moveType": "linear",
+                    "pageIndex": 1,
+                    "y": 3,
+                    "milestoneIndex": 1,
+                    "x": 2
+                }
+            ]
+        },
+        {
+            "key": "page_2",
+            "paths": [
+                {
+                    "z": 1,
+                    "assetRef": "1",
+                    "x": 1,
+                    "y": 2,
+                    "milestoneIndex": 1,
+                    "alignment": "left",
+                    "isBase": false,
+                    "asset": {
+                        "assetType": "csp",
+                        "width": 1,
+                        "animType": "bounce",
+                        "height": 1,
+                        "uri": "asdasd"
+                    }
+                }
+            ],
+            "background": {
+                "animType": "bounce",
+                "width": 1,
+                "assetType": "csp",
+                "height": 1,
+                "uri": "asdasd"
+            },
+            "avatarPath": [
+                {
+                    "moveType": "linear",
+                    "pageIndex": 1,
+                    "y": 3,
+                    "x": 2,
+                    "milestoneIndex": 1
+                }
+            ],
+            "milestones": [
+                {
+                    "alignment": "left",
+                    "actionUri": "asd",
+                    "y": 22,
+                    "toolTip": "asd",
+                    "asset": {
+                        "animType": "bounce",
+                        "uri": "asdasd",
+                        "assetType": "csp",
+                        "width": 1,
+                        "height": 1
+                    },
+                    "x": 23
+                }
+            ]
+        },
+        {
+            "key": "page_3",
+            "paths": [
+                {
+                    "alignment": "left",
+                    "y": 2,
+                    "z": 1,
+                    "milestoneIndex": 1,
+                    "isBase": false,
+                    "x": 1,
+                    "assetRef": "1",
+                    "asset": {
+                        "assetType": "csp",
+                        "width": 1,
+                        "animType": "bounce",
+                        "height": 1,
+                        "uri": "asdasd"
+                    }
+                }
+            ],
+            "avatarPath": [
+                {
+                    "pageIndex": 1,
+                    "moveType": "linear",
+                    "milestoneIndex": 1,
+                    "y": 3,
+                    "x": 2
+                }
+            ],
+            "background": {
+                "width": 1,
+                "animType": "bounce",
+                "height": 1,
+                "assetType": "csp",
+                "uri": "asdasd"
+            },
+            "milestones": [
+                {
+                    "actionUri": "asd",
+                    "alignment": "left",
+                    "y": 22,
+                    "asset": {
+                        "width": 1,
+                        "animType": "bounce",
+                        "height": 1,
+                        "uri": "asdasd",
+                        "assetType": "csp"
+                    },
+                    "toolTip": "asd",
+                    "x": 23
+                }
+            ]
+        }
+    ]
+}

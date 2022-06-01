@@ -1,15 +1,19 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 
 enum PathType { cubic, quadratic, linear, arc, rect, move }
 
 class CustomPathModel {
   final PathType pathType;
+  int mlIndex;
   final List<double> cords;
   final int page;
 
   CustomPathModel({
     required this.pathType,
     required this.cords,
+    required this.mlIndex,
     required this.page,
   });
 }
@@ -73,9 +77,11 @@ class PathItemModel {
 }
 
 enum AssetType { png, svg, csp }
+
 enum AssetSource { nwt, ast, file, raw, mmry }
 
 enum Mlastype { svg, png, lottie, rive }
+
 enum Mlanimtype { rotate, scale, bounce, translate }
 
 class Reward {

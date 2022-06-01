@@ -4,11 +4,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:testapp/UIs/test/Custom%20Path/active_milestone.dart';
-import 'package:testapp/UIs/test/Custom%20Path/addons_path_painters.dart';
 import 'package:testapp/UIs/test/Custom%20Path/custom_path_data.dart';
 import 'package:testapp/UIs/test/Custom%20Path/custom_path_model.dart';
-import 'package:testapp/UIs/test/Custom%20Path/path_painters.dart';
 import 'package:testapp/utils/size_config.dart';
+
+final avatarKey = GlobalKey();
 
 class JourneyScreen extends StatefulWidget {
   const JourneyScreen({Key? key}) : super(key: key);
@@ -29,6 +29,7 @@ class JourneyScreenState extends State<JourneyScreen>
   double? bgHeight = SizeConfig.width! * 2.165;
   double? fullBGHeight;
   double bgZoom = 1.5;
+  Offset? _avatarPosition;
 
   @override
   void initState() {
@@ -41,23 +42,36 @@ class JourneyScreenState extends State<JourneyScreen>
         duration: const Duration(seconds: 10),
         animationBehavior: AnimationBehavior.preserve);
     super.initState();
+    _path = drawPath();
+    _avatarPosition = calculatePosition(0);
     _animation = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller!, curve: Curves.easeOutCubic),
+      CurvedAnimation(parent: _controller!, curve: Curves.easeInOutCubic),
     )..addListener(() {
         setState(() {});
-        // _avatarLeftOffset = calculateX(_animation!.value).dx;
-        // _avatarTopOffset = calculateY(_animation!.value).dy;
-        // _mainController!.animateTo(_yOffset - SizeConfig.height! / 2,
-        //     duration: const Duration(seconds: 14), curve: Curves.linear);
+        _avatarPosition = calculatePosition(_animation!.value);
+        // _avatarLeftOffset = _avatarPosition.dx;
+        // _avatarBottomOffset = _avatarPosition.dy;
+        log("Avatar Position( ${_avatarPosition!.dx} , ${_avatarPosition!.dy} )");
+        double avatarPositionFromBottom = fullBGHeight! - _avatarPosition!.dy;
+        double scrollPostion = fullBGHeight! - _mainController!.offset;
+        if (avatarPositionFromBottom >= scrollPostion) {
+          _mainController!.animateTo(scrollPostion - bgHeight! * 0.5,
+              duration: const Duration(seconds: 2), curve: Curves.easeOutCubic);
+        }
+        // log("Avatar Position( $avatarPositionFromBottom , $scrollPostion )");
+        //if(scrollOffsetfromBottom >= avatarBottomOffset) avatar is hidden
+        //
       });
-
-    // _mainController!.addListener(() {
-    //   log((_mainController!.offset + SizeConfig.height!).toString());
-    // });
+    _mainController!.addListener(() {
+      // Scrollable.ensureVisible(avatarKey.currentContext!);
+      // log(_mainController!.offset.toString());
+      double avatarPositionFromBottom = fullBGHeight! - _avatarPosition!.dy;
+      double scrollPostion = fullBGHeight! - _mainController!.offset;
+      log("Avatr to Scroll Ratio( $avatarPositionFromBottom , $scrollPostion )");
+    });
     log("Screen: Height: ${SizeConfig.height}");
     log("Screen Width: ${SizeConfig.width}");
-    _path = drawPath();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _mainController!.animateTo(_mainController!.position.maxScrollExtent,
           duration: const Duration(seconds: 3), curve: Curves.easeInCubic);
       setState(() {
@@ -66,11 +80,11 @@ class JourneyScreenState extends State<JourneyScreen>
     });
   }
 
-  setDimensions(BuildContext context) {
-    bgHeight = MediaQuery.of(context).size.width * 2.165;
-    bgWidth = MediaQuery.of(context).size.width;
-    fullBGHeight = bgHeight! * noOfSlides;
-  }
+  // setDimensions(BuildContext context) {
+  //   bgHeight = MediaQuery.of(context).size.width * 2.165;
+  //   bgWidth = MediaQuery.of(context).size.width;
+  //   fullBGHeight = bgHeight! * noOfSlides;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,15 +94,19 @@ class JourneyScreenState extends State<JourneyScreen>
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.play_arrow),
           onPressed: () {
-            _controller!.isAnimating
-                ? _controller!.stop()
-                : _controller!.forward();
+            if (_controller!.isCompleted)
+              _controller!.reverse();
+            else if (_controller!.isAnimating)
+              _controller!.stop();
+            else {
+              _controller!.forward();
+            }
           }),
       body: SizedBox(
         height: SizeConfig.height,
         width: SizeConfig.width,
         child: SingleChildScrollView(
-          controller: _mainController,
+          controller: _mainController!,
           physics: const ClampingScrollPhysics(),
           // reverse: true,
           child: Container(
@@ -109,6 +127,8 @@ class JourneyScreenState extends State<JourneyScreen>
                     bgHeight: bgHeight,
                   ),
                 ),
+                CustomPath(),
+                const Milestones(),
                 Positioned(
                   bottom: 0,
                   left: 0,
@@ -117,11 +137,9 @@ class JourneyScreenState extends State<JourneyScreen>
                     painter: PathPainter(_path!),
                   ),
                 ),
-                CustomPath(),
-                Milestones(),
                 Avatar(
-                  vPos: calculateY(_animation!.value).dy,
-                  hPos: calculateX(_animation!.value).dx,
+                  vPos: _avatarPosition!.dy,
+                  hPos: _avatarPosition!.dx,
                 ),
               ],
             ),
@@ -140,21 +158,24 @@ class JourneyScreenState extends State<JourneyScreen>
 
   Path drawPath() {
     double screenWidth = SizeConfig.width!;
-    double screenHeight = fullBGHeight! / noOfSlides;
+    double screenHeight = SizeConfig.width! * 2.165;
     // Size size = Size(screenWidth!, screenHeight);
     Path path = Path();
     for (int i = 0; i < customPathData!.length; i++) {
-      for (int j = 0; j < customPathData![i].length; j++) {
-        path = generateCustomPath(
-            path, customPathData![i][j], screenHeight, screenWidth, noOfSlides);
-      }
+      path = generateCustomPath(
+          path,
+          customPathData![i],
+          screenHeight,
+          screenWidth,
+          noOfSlides,
+          i == 0 ? PathType.move : customPathData![i].pathType);
     }
     return path;
   }
 
   Path generateCustomPath(Path path, CustomPathModel model, double screenHeight,
-      double screenWidth, int pages) {
-    switch (model.pathType) {
+      double screenWidth, int pages, PathType pathType) {
+    switch (pathType) {
       case PathType.linear:
         path.lineTo(
             screenWidth * model.cords[0],
@@ -197,18 +218,17 @@ class JourneyScreenState extends State<JourneyScreen>
     }
   }
 
-  Offset calculateX(value) {
-    PathMetrics pathMetrics = _path!.computeMetrics();
-    PathMetric pathMetric = pathMetrics.elementAt(0);
-    value = pathMetric.length * value;
-    Tangent? pos = pathMetric.getTangentForOffset(value);
-    return pos!.position;
-  }
+  // Offset calculateX(value) {
+  //   PathMetrics pathMetrics = _path!.computeMetrics();
+  //   PathMetric pathMetric = pathMetrics.elementAt(0);
+  //   value = pathMetric.length * value;
+  //   Tangent? pos = pathMetric.getTangentForOffset(value);
+  //   return pos!.position;
+  // }
 
-  Offset calculateY(value) {
+  Offset calculatePosition(value) {
     PathMetrics pathMetrics = _path!.computeMetrics();
     PathMetric pathMetric = pathMetrics.elementAt(0);
-    // log(pathMetric.toString());
     value = pathMetric.length * value;
     Tangent? pos = pathMetric.getTangentForOffset(value);
     return pos!.position;
@@ -236,7 +256,7 @@ class Background extends StatelessWidget {
       child: Column(
         children: List.generate(
           noOfSlides,
-          (index) => Image.asset(
+          (mlIndex) => Image.asset(
             "assets/custompathassets/bg.png",
             // color: Colors.grey,
             fit: BoxFit.cover,
@@ -249,26 +269,6 @@ class Background extends StatelessWidget {
   }
 }
 
-class PathPainter extends CustomPainter {
-  Path path;
-
-  PathPainter(this.path);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = Colors.red
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 1.0;
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
-}
-
 class CustomPath extends StatelessWidget {
   CustomPath({Key? key}) : super(key: key);
 
@@ -276,8 +276,6 @@ class CustomPath extends StatelessWidget {
   final bgHeight = SizeConfig.width! * 2.165;
 
   getChild(PathItemModel item) {
-    // log(item.height.toString());
-    // log(item.width.toString());
     switch (item.type) {
       case "SVG":
         return item.source == "NTWRK"
@@ -303,36 +301,36 @@ class CustomPath extends StatelessWidget {
                 width: bgWidth! * item.width!,
                 height: bgHeight * item.height!,
               );
-      case "CSP":
-        return CustomPaint(
-          size: Size(bgWidth! * item.width!, bgHeight * item.height!),
-          painter: getPainter(item),
-        );
+      // case "CSP":
+      //   return CustomPaint(
+      //     size: Size(bgWidth! * item.width!, bgHeight * item.height!),
+      //     painter: getPainter(item),
+      //   );
     }
   }
 
-  getPainter(PathItemModel item) {
-    switch (item.asset) {
-      case "jointer":
-        return JointerPainter(
-          // shadowColor: const Color(0xff5A4A33),
-          // ladderPrimaryColor: const Color(0xffF79780),
-          // ladderSecondaryColor: const Color(0xffFFD4AC),
-          shadowColor: item.colors?[0],
-          gradColor1: item.colors?[1],
-          gradColor2: item.colors?[2],
-        );
-      case "ladder":
-        return LadderPainter(
-          shadowColor: item.colors?[0], //const Color(0xff5A4A33),
-          ladderPrimaryColor: item.colors?[1], //const Color(0xffF79780),
-          ladderSecondaryColor: item.colors?[2], //const Color(0xffFFD4AC),
-          // shadowColor: Colors.grey,
-          // ladderPrimaryColor: Colors.amber,
-          // ladderSecondaryColor: Colors.amberAccent,
-        );
-    }
-  }
+  // getPainter(PathItemModel item) {
+  //   switch (item.asset) {
+  //     case "jointer":
+  //       return JointerPainter(
+  //         // shadowColor: const Color(0xff5A4A33),
+  //         // ladderPrimaryColor: const Color(0xffF79780),
+  //         // ladderSecondaryColor: const Color(0xffFFD4AC),
+  //         shadowColor: item.colors?[0],
+  //         gradColor1: item.colors?[1],
+  //         gradColor2: item.colors?[2],
+  //       );
+  //     case "ladder":
+  //       return LadderPainter(
+  //         shadowColor: item.colors?[0], //const Color(0xff5A4A33),
+  //         ladderPrimaryColor: item.colors?[1], //const Color(0xffF79780),
+  //         ladderSecondaryColor: item.colors?[2], //const Color(0xffFFD4AC),
+  //         // shadowColor: Colors.grey,
+  //         // ladderPrimaryColor: Colors.amber,
+  //         // ladderSecondaryColor: Colors.amberAccent,
+  //       );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -396,6 +394,7 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
+      key: avatarKey,
       top: vPos,
       left: hPos,
       child: const IgnorePointer(
@@ -408,4 +407,24 @@ class Avatar extends StatelessWidget {
       ),
     );
   }
+}
+
+class PathPainter extends CustomPainter {
+  Path path;
+
+  PathPainter(this.path);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = Colors.red
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 1.0;
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

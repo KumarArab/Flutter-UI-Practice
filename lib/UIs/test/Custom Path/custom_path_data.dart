@@ -1,38 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/UIs/test/Custom%20Path/custom_path_model.dart';
 
-List<List<CustomPathModel>>? customPathData = [
-  [
-    CustomPathModel(pathType: PathType.move, cords: [0.5, 0.88], page: 1),
-  ],
-  [
-    CustomPathModel(pathType: PathType.linear, cords: [0.3, 0.73], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.2, 0.7], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.33, 0.66], page: 1),
-  ],
-  [
-    CustomPathModel(pathType: PathType.linear, cords: [0.5, 0.59], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.67, 0.47], page: 1),
-  ],
-  [
-    CustomPathModel(pathType: PathType.linear, cords: [0.74, 0.445], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.4, 0.34], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.26, 0.3], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.26, 0.2], page: 1),
-  ],
-  [
-    CustomPathModel(pathType: PathType.linear, cords: [0.2, 0.18], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.72, 0.12], page: 1),
-  ],
-  [
-    CustomPathModel(pathType: PathType.linear, cords: [0.8, 0.09], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.5, 0.0], page: 1),
-    CustomPathModel(pathType: PathType.linear, cords: [0.44, 0.98], page: 2),
-  ],
-  [
-    CustomPathModel(pathType: PathType.linear, cords: [0.35, 0.95], page: 2),
-    CustomPathModel(pathType: PathType.linear, cords: [0.7, 0.835], page: 2),
-  ]
+List<CustomPathModel>? customPathData = [
+  //Coords from m0 to ml1
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.32, 0.8], page: 1, mlIndex: 0),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.24, 0.7], page: 1, mlIndex: 0),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.05, 0.66], page: 1, mlIndex: 0),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.33, 0.58], page: 1, mlIndex: 0),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.48, 0.55], page: 1, mlIndex: 1),
+
+  // CustomPathModel(
+  //     pathType: PathType.linear, cords: [0.5, 0.53], page: 1, mlIndex: 1),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.7, 0.41], page: 1, mlIndex: 1),
+
+  // CustomPathModel(
+  //     pathType: PathType.linear, cords: [0.74, 0.445], page: 1, mlIndex: 2),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.42, 0.32], page: 1, mlIndex: 2),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.26, 0.3], page: 1, mlIndex: 2),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.26, 0.17], page: 1, mlIndex: 3),
+
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.12, 0.14], page: 1, mlIndex: 3),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.08, 0.1], page: 1, mlIndex: 4),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.65, 0.05], page: 1, mlIndex: 4),
+
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.7, 0.03], page: 1, mlIndex: 5),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.58, 0.0], page: 1, mlIndex: 5),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.26, 0.98], page: 2, mlIndex: 5),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.4, 0.9], page: 2, mlIndex: 6),
+  CustomPathModel(
+      pathType: PathType.linear, cords: [0.6, 0.84], page: 2, mlIndex: 6),
+  //   CustomPathModel(
+  //       pathType: PathType.linear, cords: [0.7, 0.835], page: 2),
+  // ]
 ];
 
 final List<PathItemModel> customPathItemsList = [
