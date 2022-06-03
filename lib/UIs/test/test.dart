@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/UIs/test/Custom%20Path/custom_path.dart';
+import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/journey_page_view.dart';
 import 'package:testapp/UIs/test/other_tests/infinite_scroll_bg.dart';
 import 'package:testapp/UIs/test/other_tests/rotating_loader.dart';
 import 'package:testapp/UIs/test/stack_overflow/slider_swiper.dart';

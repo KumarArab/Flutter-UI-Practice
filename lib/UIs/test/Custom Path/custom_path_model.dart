@@ -1,8 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 
 enum PathType { cubic, quadratic, linear, arc, rect, move }
+
+class JourneyPage {
+  String bgImage;
+  List<JourneyPathModel> assetPathBlockList;
+  List<CustomPathModel> customPathActionList;
+  List<MilestoneModel> milestones;
+  JourneyPage({
+    required this.bgImage,
+    required this.assetPathBlockList,
+    required this.customPathActionList,
+    required this.milestones,
+  });
+}
 
 class CustomPathModel {
   final PathType pathType;
@@ -47,7 +61,7 @@ class MilestoneModel {
   });
 }
 
-class PathItemModel {
+class JourneyPathModel {
   final String? asset;
   final double? dx, dy;
   final double? height, width;
@@ -59,7 +73,7 @@ class PathItemModel {
   final List<Color>? colors;
   final String? alignment; //Left || Right
   final String? source; // [NWT, AST, FILE, RAW, MMRY]
-  PathItemModel({
+  JourneyPathModel({
     this.asset,
     this.dx,
     this.dy,
