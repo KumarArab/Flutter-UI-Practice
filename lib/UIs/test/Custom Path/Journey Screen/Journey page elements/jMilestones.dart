@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/journey_page_data.dart';
 import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/journey_page_logic.dart';
 import 'package:testapp/UIs/test/Custom%20Path/custom_path_model.dart';
 import 'package:testapp/utils/size_config.dart';
@@ -20,9 +21,9 @@ class Milestones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: List.generate(
-        JourneyPageLogic.currentMilestoneList.length,
+        milestones.length,
         (i) => getMilestoneType(
-          JourneyPageLogic.currentMilestoneList[i],
+          milestones[i],
         ),
       ),
     );

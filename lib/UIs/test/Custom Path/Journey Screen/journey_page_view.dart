@@ -41,7 +41,7 @@ class JourneyScreenState extends State<JourneyScreen>
     _path = JourneyPageLogic.drawPath();
     _avatarPosition = calculatePosition(0);
     _animation = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller!, curve: Curves.easeInOutCubic),
+      CurvedAnimation(parent: _controller!, curve: Curves.easeInOut),
     )..addListener(() {
         setState(() {});
         _avatarPosition = calculatePosition(_animation!.value);
