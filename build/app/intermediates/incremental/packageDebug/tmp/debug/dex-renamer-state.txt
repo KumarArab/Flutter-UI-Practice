@@ -1,4 +1,4 @@
-#Tue May 31 18:31:57 IST 2022
-base.0=C\:\\Users\\HP\\Documents\\Practice\\Flutter-UI-Practice\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
+#Mon Jun 13 12:22:13 IST 2022
+base.0=/Users/arabkumar/Documents/flutter_practice/Flutter-UI-Practice/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
+path.0=classes.dex

@@ -8,6 +8,8 @@ class JourneyPageLogic {
   static int? bottomPage, pageCount;
   static List<JourneyPage>? pages;
   static List<MilestoneModel> currentMilestoneList = [];
+  static List<JourneyPathModel> journeyPathItemsList = [];
+  static List<CustomPathModel> customPathDataList = [];
   JourneyPageLogic(int stPage, int pgCount, List<JourneyPage> pgs) {
     pageWidth = SizeConfig.width;
     pageHeight = pageWidth! * 2.165;
@@ -15,8 +17,28 @@ class JourneyPageLogic {
     pageCount = pgCount;
     currentFullViewHeight = pageHeight! * pgCount;
     pages = pgs;
+    setCurrentMilestones(pgs);
+    setCurrentPathItems(pgs);
+    setJourneyPathItems(pgs);
   }
 
+  setCurrentMilestones(List<JourneyPage> pages) {
+    pages.forEach((page) {
+      currentMilestoneList.addAll(page.milestones);
+    });
+  }
+
+  setCurrentPathItems(List<JourneyPage> pages) {
+    pages.forEach((page) {
+      customPathDataList.addAll(page.avatarPath);
+    });
+  }
+
+  setJourneyPathItems(List<JourneyPage> pages) {
+    pages.forEach((page) {
+      journeyPathItemsList.addAll(page.path);
+    });
+  }
   // setDimensions(BuildContext context) {
   //   JourneyPageLogic.pageHeight = MediaQuery.of(context).size.width * 2.165;
   //   JourneyPageLogic.pageWidth = MediaQuery.of(context).size.width;
@@ -26,9 +48,9 @@ class JourneyPageLogic {
   static Path drawPath() {
     // Size size = Size(JourneyPageLogic.pageWidth!!, JourneyPageLogic.pageHeight!);
     Path path = Path();
-    for (int i = 0; i < customPathData!.length; i++) {
-      path = JourneyPageLogic.generateCustomPath(path, customPathData![i],
-          i == 0 ? PathType.move : customPathData![i].pathType);
+    for (int i = 0; i < customPathDataList.length; i++) {
+      path = JourneyPageLogic.generateCustomPath(path, customPathDataList[i],
+          i == 0 ? PathType.move : customPathDataList[i].pathType);
     }
     return path;
   }

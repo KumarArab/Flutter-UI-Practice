@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/Journey%20page%20elements/jAssetPath.dart';
 import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/Journey%20page%20elements/jBackground.dart';
 import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/Journey%20page%20elements/jMilestones.dart';
-import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/journey_page_logic.dart';
-import 'package:testapp/UIs/test/Custom%20Path/active_milestone.dart';
 import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/journey_page_data.dart';
-import 'package:testapp/UIs/test/Custom%20Path/custom_path_model.dart';
+import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/journey_page_logic.dart';
 import 'package:testapp/utils/size_config.dart';
 
 final avatarKey = GlobalKey();
@@ -71,7 +69,7 @@ class JourneyScreenState extends State<JourneyScreen>
     });
     log("Screen: Height: ${SizeConfig.height}");
     log("Screen Width: ${SizeConfig.width}");
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       _mainController!.animateTo(_mainController!.position.maxScrollExtent,
           duration: const Duration(seconds: 3), curve: Curves.easeInCubic);
     });
@@ -93,39 +91,60 @@ class JourneyScreenState extends State<JourneyScreen>
               _controller!.forward();
             }
           }),
-      body: SizedBox(
-        height: SizeConfig.height,
-        width: SizeConfig.width,
-        child: SingleChildScrollView(
-          controller: _mainController!,
-          physics: const ClampingScrollPhysics(),
-          // reverse: true,
-          child: Container(
-            height: JourneyPageLogic.currentFullViewHeight,
+      body: Stack(
+        children: [
+          SizedBox(
+            height: SizeConfig.height,
             width: SizeConfig.width,
-            color: Colors.black,
-            child: Stack(
-              children: [
-                const Background(),
-                const JourneyAssetPath(),
-                const Milestones(),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: CustomPaint(
-                    size: Size(SizeConfig.width!,
-                        JourneyPageLogic.currentFullViewHeight!),
-                    painter: PathPainter(_path!),
-                  ),
+            child: SingleChildScrollView(
+              controller: _mainController!,
+              physics: const ClampingScrollPhysics(),
+              // reverse: true,
+              child: Container(
+                height: JourneyPageLogic.currentFullViewHeight,
+                width: SizeConfig.width,
+                color: Colors.black,
+                child: Stack(
+                  children: [
+                    const Background(),
+                    const JourneyAssetPath(),
+                    const Milestones(),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: CustomPaint(
+                        size: Size(SizeConfig.width!,
+                            JourneyPageLogic.currentFullViewHeight!),
+                        painter: PathPainter(_path!),
+                      ),
+                    ),
+                    Avatar(
+                      vPos: _avatarPosition!.dy,
+                      hPos: _avatarPosition!.dx,
+                    ),
+                  ],
                 ),
-                Avatar(
-                  vPos: _avatarPosition!.dy,
-                  hPos: _avatarPosition!.dx,
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+          SafeArea(
+            child: Container(
+              margin: EdgeInsets.only(
+                left: SizeConfig.width! * 0.05,
+              ),
+              child: CircleAvatar(
+                backgroundColor: Colors.white.withOpacity(0.3),
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_rounded,
+                      color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -38,17 +38,21 @@ class JourneyAssetPath extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    customPathItemsList.sort((a, b) => a.dz!.compareTo(b.dz!));
+    JourneyPageLogic.journeyPathItemsList
+        .sort((a, b) => a.dz!.compareTo(b.dz!));
     return Stack(
       children: List.generate(
-        customPathItemsList.length,
+        JourneyPageLogic.journeyPathItemsList.length,
         (i) => Positioned(
-          left: JourneyPageLogic.pageWidth! * customPathItemsList[i].dx!,
-          bottom: JourneyPageLogic.pageHeight! * customPathItemsList[i].dy!,
+          left: JourneyPageLogic.pageWidth! *
+              JourneyPageLogic.journeyPathItemsList[i].dx!,
+          bottom: JourneyPageLogic.pageHeight! *
+              JourneyPageLogic.journeyPathItemsList[i].dy!,
           child: Container(
-            width: JourneyPageLogic.pageWidth! * customPathItemsList[i].width!,
-            height:
-                JourneyPageLogic.pageHeight! * customPathItemsList[i].height!,
+            width: JourneyPageLogic.pageWidth! *
+                JourneyPageLogic.journeyPathItemsList[i].width!,
+            height: JourneyPageLogic.pageHeight! *
+                JourneyPageLogic.journeyPathItemsList[i].height!,
             // decoration: BoxDecoration(
             //   border: Border.all(
             //     color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
@@ -58,7 +62,7 @@ class JourneyAssetPath extends StatelessWidget {
             //   // borderRadius: BorderRadius.circular(10),
             // ),
             alignment: Alignment.bottomCenter,
-            child: getChild(customPathItemsList[i]),
+            child: getChild(JourneyPageLogic.journeyPathItemsList[i]),
           ),
         ),
       ),

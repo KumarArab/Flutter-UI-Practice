@@ -1,19 +1,16 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 
 enum PathType { cubic, quadratic, linear, arc, rect, move }
 
 class JourneyPage {
   String bgImage;
-  List<JourneyPathModel> assetPathBlockList;
-  List<CustomPathModel> customPathActionList;
+  List<JourneyPathModel> path;
+  List<CustomPathModel> avatarPath;
   List<MilestoneModel> milestones;
   JourneyPage({
     required this.bgImage,
-    required this.assetPathBlockList,
-    required this.customPathActionList,
+    required this.path,
+    required this.avatarPath,
     required this.milestones,
   });
 }

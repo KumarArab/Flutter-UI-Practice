@@ -21,9 +21,9 @@ class Milestones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: List.generate(
-        milestones.length,
+        JourneyPageLogic.currentMilestoneList.length,
         (i) => getMilestoneType(
-          milestones[i],
+          JourneyPageLogic.currentMilestoneList[i],
         ),
       ),
     );
