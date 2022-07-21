@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:testapp/UIs/Bubble%20Backup%20Animation/bubble_backup_animation.dart';
+import 'package:testapp/UIs/Input%20fields/text_fields.dart';
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
+import 'package:testapp/UIs/custom_paint/paint.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
 import 'package:testapp/UIs/test/test.dart';
 import 'package:testapp/utils/size_config.dart';
 // import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -44,7 +47,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Flutter UIs"),
       ),
       body: ListView.builder(
-        itemCount: 4,
+        itemCount: 6,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (ctx, i) => ListTile(
             leading: const Icon(
@@ -68,7 +71,10 @@ class HomePage extends StatelessWidget {
 
       case 3:
         return "Test View";
-
+      case 4:
+        return "Input Fields";
+      case 5:
+        return "Flutter paint";
       default:
         return "Not yet decided";
     }
@@ -107,6 +113,24 @@ class HomePage extends StatelessWidget {
           context,
           CupertinoPageRoute(
             builder: (ctx) => const TestView(),
+          ),
+        );
+
+        break;
+      case 4:
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (ctx) => Textfields(),
+          ),
+        );
+
+        break;
+      case 5:
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (ctx) => FlutterPaint(),
           ),
         );
 

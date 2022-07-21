@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/UIs/test/Custom%20Path/Journey%20Screen/journey_page_view.dart';
 import 'package:testapp/UIs/test/Custom%20Path/splash.dart';
+import 'package:testapp/UIs/test/ignore_pointer.dart';
 import 'package:testapp/UIs/test/other_tests/infinite_scroll_bg.dart';
 import 'package:testapp/UIs/test/other_tests/rotating_loader.dart';
 import 'package:testapp/UIs/test/stack_overflow/slider_swiper.dart';
@@ -87,6 +88,18 @@ class TestView extends StatelessWidget {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (ctx) => TimeMachine(),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.circle,
+              color: Colors.orange,
+            ),
+            title: const Text("Ignore Pointer"),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (ctx) => const InfinteList(),
               ),
             ),
           ),
