@@ -7,8 +7,7 @@ import 'package:testapp/UIs/custom_paint/paint.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
 import 'package:testapp/UIs/test/test.dart';
 import 'package:testapp/utils/size_config.dart';
-// import 'package:device_preview/device_preview.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
   runApp(const MyApp());
