@@ -35,7 +35,6 @@ class _FlutterPaintState extends State<FlutterPaint> {
         },
         child: Center(
           child: CustomPaint(
-            willChange: true,
             foregroundPainter: FlutterPainter(offsets: _offsets),
             child: Container(
               color: Colors.amberAccent,
