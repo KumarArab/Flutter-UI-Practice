@@ -5,6 +5,7 @@ import 'package:testapp/UIs/Input%20fields/text_fields.dart';
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
 import 'package:testapp/UIs/custom_paint/paint.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
+import 'package:testapp/UIs/path_glow/path_glow_main.dart';
 import 'package:testapp/UIs/test/test.dart';
 import 'package:testapp/utils/size_config.dart';
 import 'package:device_preview/device_preview.dart';
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Flutter UIs"),
       ),
       body: ListView.builder(
-        itemCount: 6,
+        itemCount: 7,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (ctx, i) => ListTile(
             leading: const Icon(
@@ -74,6 +75,8 @@ class HomePage extends StatelessWidget {
         return "Input Fields";
       case 5:
         return "Flutter paint";
+      case 6:
+        return "Base Glow";
       default:
         return "Not yet decided";
     }
@@ -130,6 +133,16 @@ class HomePage extends StatelessWidget {
           context,
           CupertinoPageRoute(
             builder: (ctx) => FlutterPaint(),
+          ),
+        );
+
+        break;
+
+      case 6:
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (ctx) => const PathGlowMain(),
           ),
         );
 
