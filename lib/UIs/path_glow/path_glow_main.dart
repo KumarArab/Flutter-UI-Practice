@@ -13,35 +13,62 @@ class PathGlowMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff0C5462),
-      body: Center(
-        child: SizedBox(
-          child: Stack(
-            children: [
-              const ActiveMilestoneBackgroundGlow(),
-              Align(
-                alignment: Alignment.center,
-                child: SvgPicture.asset(
-                  "assets/custompathassets/base1.svg",
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-              ActiveMilestoneBaseGlow(
-                point:
-                    Point(SizeConfig.width! * 0.25, SizeConfig.height! * 0.28),
-                size: Size(SizeConfig.width! * 0.5, SizeConfig.width! * 0.6),
-              ),
-              Positioned(
-                top: SizeConfig.height! * 0.36,
-                left: SizeConfig.width! * 0.4,
-                child: SvgPicture.asset("assets/custompathassets/ml4.svg",
-                    height: 100, width: 100, fit: BoxFit.contain),
-              ),
-              const ActiveMilestoneFrontGlow(),
-              const MileStoneCheck()
-            ],
-          ),
+      body: SizedBox(
+        width: SizeConfig.width,
+        child: ListView(
+          children: const [
+            ActiveGlowingMilestone(bg: "assets/custompathassets/base1.svg"),
+            ActiveGlowingMilestone(bg: "assets/custompathassets/base2.svg"),
+            ActiveGlowingMilestone(bg: "assets/custompathassets/base3.svg"),
+            ActiveGlowingMilestone(bg: "assets/custompathassets/base4.svg"),
+            ActiveGlowingMilestone(bg: "assets/custompathassets/base5.svg"),
+            ActiveGlowingMilestone(bg: "assets/custompathassets/base6.svg"),
+            ActiveGlowingMilestone(bg: "assets/custompathassets/base7.svg"),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class ActiveGlowingMilestone extends StatelessWidget {
+  final String? bg;
+  const ActiveGlowingMilestone({
+    Key? key,
+    required this.bg,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: SizeConfig.width!,
+      width: SizeConfig.width!,
+      child: Stack(
+        children: [
+          const ActiveMilestoneBackgroundGlow(),
+          Align(
+            alignment: Alignment.center,
+            child: SvgPicture.asset(
+              bg!,
+              height: 200,
+              width: 200,
+            ),
+          ),
+          ActiveMilestoneBaseGlow(
+            point: Point(SizeConfig.width! * 0.25, SizeConfig.height! * 0.03),
+            size: Size(SizeConfig.width! * 0.5, SizeConfig.width! * 0.6),
+          ),
+          Positioned(
+            top: SizeConfig.height! * 0.1,
+            left: SizeConfig.width! * 0.4,
+            child: SvgPicture.asset("assets/custompathassets/ml4.svg",
+                height: 100, width: 100, fit: BoxFit.contain),
+          ),
+          ActiveMilestoneFrontGlow(
+            position: Point(SizeConfig.width! * 0.3, SizeConfig.height! * 0.15),
+          ),
+          const MileStoneCheck()
+        ],
       ),
     );
   }
@@ -54,7 +81,7 @@ class MileStoneCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       left: SizeConfig.width! * 0.54,
-      top: SizeConfig.height! * 0.46,
+      top: SizeConfig.height! * 0.2,
       child: Container(
         width: 50,
         height: 50,
@@ -70,15 +97,17 @@ class MileStoneCheck extends StatelessWidget {
 }
 
 class ActiveMilestoneFrontGlow extends StatelessWidget {
+  final Point? position;
   const ActiveMilestoneFrontGlow({
     Key? key,
+    @required this.position,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        left: SizeConfig.width! * 0.3,
-        top: SizeConfig.height! * 0.42,
+        left: position!.x.toDouble(),
+        top: position!.y.toDouble(),
         child: ClipPath(
           clipper: const FrontBeamClipper(),
           child: Container(
@@ -109,8 +138,8 @@ class ActiveMilestoneBackgroundGlow extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: Container(
-        height: SizeConfig.width! * 0.7,
-        width: SizeConfig.width! * 0.7,
+        height: SizeConfig.width! * 0.6,
+        width: SizeConfig.width! * 0.6,
         decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
           BoxShadow(
               color: const Color(0xff62E3C4).withOpacity(0.4),
