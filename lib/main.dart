@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:testapp/UIs/Bubble%20Backup%20Animation/bubble_backup_animation.dart';
 import 'package:testapp/UIs/Input%20fields/text_fields.dart';
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
+import 'package:testapp/UIs/circular_ring_animation/circular_anim_main.dart';
 import 'package:testapp/UIs/custom_paint/paint.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
 import 'package:testapp/UIs/path_glow/path_glow_main.dart';
@@ -47,7 +48,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Flutter UIs"),
       ),
       body: ListView.builder(
-        itemCount: 7,
+        itemCount: 8,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (ctx, i) => ListTile(
             leading: const Icon(
@@ -77,6 +78,8 @@ class HomePage extends StatelessWidget {
         return "Flutter paint";
       case 6:
         return "Base Glow";
+      case 7:
+        return "Circular Ring Animation";
       default:
         return "Not yet decided";
     }
@@ -143,6 +146,15 @@ class HomePage extends StatelessWidget {
           context,
           CupertinoPageRoute(
             builder: (ctx) => const PathGlowMain(),
+          ),
+        );
+
+        break;
+      case 7:
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (ctx) => const CircularAnim(),
           ),
         );
 
