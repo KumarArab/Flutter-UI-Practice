@@ -95,6 +95,9 @@ class _CircularAnimState extends State<CircularAnim>
           Future.delayed(const Duration(milliseconds: 600), () {
             scaleFactor = 5.0;
           });
+          Future.delayed(const Duration(milliseconds: 1600), () {
+            isAnimationInProgress = false;
+          });
         },
         child: const Icon(Icons.animation, color: Colors.white),
       ),
