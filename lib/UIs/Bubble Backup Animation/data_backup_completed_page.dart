@@ -19,15 +19,16 @@ class DataBackupCompletedPage extends AnimatedWidget {
                 children: [
                   Expanded(
                     child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: CustomPaint(
-                          foregroundPainter: _DataBackupCompletedPainter(
-                              animation: endingAnimation),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                          ),
-                        )),
+                      alignment: Alignment.bottomCenter,
+                      child: CustomPaint(
+                        foregroundPainter: _DataBackupCompletedPainter(
+                            animation: endingAnimation),
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 60),
                   Expanded(
