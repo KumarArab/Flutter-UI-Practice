@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.white,
       ),
+      showPerformanceOverlay: true,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(

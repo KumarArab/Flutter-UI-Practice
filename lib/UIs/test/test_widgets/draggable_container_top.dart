@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/utils/size_config.dart';
 
 class BarcodePage extends StatefulWidget {
   BarcodePage({Key? key, required this.result}) : super(key: key);
@@ -66,6 +65,9 @@ class _TestPageState extends State<TestPage> {
             initiallyExpanded: false,
             textColor: Colors.black,
             key: _expansionTileKey,
+            leading: const CircleAvatar(
+                backgroundImage: AssetImage(
+                    "https://images.unsplash.com/photo-1674618487633-dd14c2cbcbc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80")),
             onExpansionChanged: (value) =>
                 {}, //widget.onExpansionChanged(_expansionTileKey),
             trailing: const Icon(
