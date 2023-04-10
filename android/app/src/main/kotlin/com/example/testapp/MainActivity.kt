@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.provider.Settings
 import androidx.annotation.DrawableRes
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
@@ -18,7 +19,7 @@ import java.io.ByteArrayOutputStream
 
 class MainActivity: FlutterActivity() {
 
-    private val CHANNEL = "testApp/installedApps"
+    private val CHANNEL = "methodChannel/deviceData"
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
@@ -26,13 +27,17 @@ class MainActivity: FlutterActivity() {
             call, result ->
             if (call.method == "getInstalledApps") {
               val installedAppsList = getInstalledApplications()
-      
               if (installedAppsList.size != 0) {
                 result.success(installedAppsList)
               } else {
                 result.error("UNAVAILABLE", "Installed Apps information not available", null)
               }
-            } else {
+            }
+            else if(call.method == "getDeviceId"){
+              val id: String = getUniqueDeviceId(context)
+                result.success(id)
+            }
+            else {
               result.notImplemented()
             }
           }
@@ -40,27 +45,37 @@ class MainActivity: FlutterActivity() {
 
      @SuppressLint("QueryPermissionsNeeded")
      private fun getInstalledApplications(): ArrayList<HashMap<String,Any?>> {
-         val packageManager = context.packageManager
-         val installedApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-         val userApps = installedApps.filter {
-             (it.flags and ApplicationInfo.FLAG_SYSTEM) != ApplicationInfo.FLAG_SYSTEM
-         }
-         val apps: ArrayList<HashMap<String,Any?>>  = ArrayList()
-         for (app in userApps) {
-            val appName =  app.loadLabel(packageManager).toString()
-             val appData : HashMap<String, Any?>
-            = HashMap<String, Any?> ()
-             appData["package_name"] = app.packageName
-             appData["app_name"] = appName
-             val iconData = getDrawableFromRes(context,app.loadIcon(packageManager))
-             if(iconData != null){
-                 appData["icon"] = iconData
-             }
-             apps.add(appData)
-         }
-         return apps;
-
+      try {
+        val packageManager = context.packageManager
+        val installedApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+        val userApps = installedApps.filter {
+            (it.flags and ApplicationInfo.FLAG_SYSTEM) != ApplicationInfo.FLAG_SYSTEM
+        }
+        val apps: ArrayList<HashMap<String,Any?>>  = ArrayList()
+        for (app in userApps) {
+           val appName =  app.loadLabel(packageManager).toString()
+            val appData : HashMap<String, Any?>
+           = HashMap<String, Any?> ()
+            appData["package_name"] = app.packageName
+            appData["app_name"] = appName
+            val iconData = getDrawableFromRes(context,app.loadIcon(packageManager))
+            if(iconData != null){
+                appData["icon"] = iconData
+            }
+            apps.add(appData)
+        }
+        return apps;
+    } catch (e: Exception) {
+        println("Failed to query packages with error $e")
+        return ArrayList()
+    }
      }
+
+
+    @SuppressLint("HardwareIds")
+    fun getUniqueDeviceId(context: Context): String {
+        return Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+    }
 
     /**
      * @param ctx the context

@@ -249,7 +249,7 @@
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.11",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.12",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -260,20 +260,14 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "path_provider_ios",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/path_provider_ios-2.0.11",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
-      "name": "path_provider_linux",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.7",
+      "name": "path_provider_foundation",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/path_provider_foundation-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "path_provider_macos",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.6",
+      "name": "path_provider_linux",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.7",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -327,7 +321,7 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.15",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.17",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -338,20 +332,14 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "shared_preferences_ios",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/shared_preferences_ios-2.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
-      "name": "shared_preferences_linux",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.1.2",
+      "name": "shared_preferences_foundation",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/shared_preferences_foundation-2.1.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "shared_preferences_macos",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-2.0.4",
+      "name": "shared_preferences_linux",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -470,7 +458,7 @@
       "languageVersion": "2.14"
     }
   ],
-  "generated": "2023-01-21T15:46:24.390531Z",
+  "generated": "2023-02-02T06:24:17.454958Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }

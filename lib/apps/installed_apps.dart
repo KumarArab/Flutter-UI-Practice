@@ -17,8 +17,10 @@ class InstalledApps extends StatefulWidget {
 class _InstalledAppsState extends State<InstalledApps> {
   List<Package> packages = [];
   List<Package> res = [];
+  String? deviceId;
+  bool isDeviceIdLoading = false;
   bool isLoading = true;
-  static const platform = MethodChannel('testApp/installedApps');
+  static const platform = MethodChannel("methodChannel/deviceData");
 
   getInstalledApplications() async {
     try {
@@ -32,6 +34,22 @@ class _InstalledAppsState extends State<InstalledApps> {
       log("Failed to fetch installed applications $e");
     }
     isLoading = false;
+  }
+
+  Future<void> getDeviceId() async {
+    setState(() {
+      isDeviceIdLoading = true;
+    });
+    try {
+      final String result = await platform.invokeMethod('getDeviceId');
+      deviceId = result;
+    } catch (e) {
+      debugPrint(e.toString());
+      deviceId = "";
+    }
+    setState(() {
+      isDeviceIdLoading = false;
+    });
   }
 
   @override
@@ -50,6 +68,47 @@ class _InstalledAppsState extends State<InstalledApps> {
           "Available Apps",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: [
+          isDeviceIdLoading
+              ? SizedBox(
+                  height: SizeConfig.width! * 0.08,
+                  width: SizeConfig.width! * 0.08,
+                  child: const CircularProgressIndicator())
+              : IconButton(
+                  onPressed: () async {
+                    await getDeviceId();
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: SizeConfig.width! * 0.7,
+                              color: Colors.green,
+                              height: kToolbarHeight,
+                              child: const Text(
+                                "Device Id",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            Container(
+                              color: Colors.white,
+                              height: SizeConfig.width! * 0.1,
+                              width: SizeConfig.width! * 0.7,
+                              child: Text(deviceId ?? ""),
+                              alignment: Alignment.center,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.info_rounded))
+        ],
       ),
       body: isLoading
           ? const Center(
