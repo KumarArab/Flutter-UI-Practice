@@ -7,6 +7,7 @@ class SizeConfig {
   static double? titleSize;
   static double? fontSize;
   static double? mFontSize;
+  static double? pageHorizontalMargins;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -15,5 +16,6 @@ class SizeConfig {
     titleSize = _mediaQueryData!.size.width * 0.1;
     fontSize = _mediaQueryData!.size.width * 0.045;
     mFontSize = _mediaQueryData!.size.width * 0.064;
+    pageHorizontalMargins = _mediaQueryData!.size.width * 0.0579;
   }
 }

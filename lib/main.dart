@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:testapp/UIs/Bubble%20Backup%20Animation/bubble_backup_animation.dart';
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
 import 'package:testapp/UIs/adaptive_test.dart';
+import 'package:testapp/UIs/cards/cards_home.dart';
+import 'package:testapp/UIs/charts/line_grad_chart.dart';
 import 'package:testapp/UIs/circular_ring_animation/baseAnimation.dart';
 import 'package:testapp/UIs/circular_ring_animation/circular_anim_main.dart';
 import 'package:testapp/UIs/compass/compass_screen.dart';
 import 'package:testapp/UIs/custom_paint/paint.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
+import 'package:testapp/UIs/lotties/lottie.dart';
 import 'package:testapp/UIs/multi_scratch_card_view/instant_scratch_view.dart';
 import 'package:testapp/UIs/path_glow/path_glow_main.dart';
 import 'package:testapp/UIs/test/test.dart';
@@ -84,6 +87,15 @@ class HomePage extends StatelessWidget {
     },
     {
       "Installed Apps": const InstalledApps(),
+    },
+    {
+      "Cool Cards": const Cards(),
+    },
+    {
+      "Lottie Fun": const LottieTest(),
+    },
+    {
+      "Line Gradient Chart": const LineGradientChart(),
     }
   ];
   @override
