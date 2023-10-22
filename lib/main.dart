@@ -13,6 +13,7 @@ import 'package:testapp/UIs/image-animation/image_anim_main.dart';
 import 'package:testapp/UIs/lotties/lottie.dart';
 import 'package:testapp/UIs/multi_scratch_card_view/instant_scratch_view.dart';
 import 'package:testapp/UIs/path_glow/path_glow_main.dart';
+import 'package:testapp/UIs/slivers/insta_nested_scroll_view.dart';
 import 'package:testapp/UIs/test/test.dart';
 import 'package:testapp/apps/installed_apps.dart';
 import 'package:testapp/utils/size_config.dart';
@@ -96,6 +97,9 @@ class HomePage extends StatelessWidget {
     },
     {
       "Line Gradient Chart": const LineGradientChart(),
+    },
+    {
+      "Insta Nested ScrollView": const InstaProfilePage(),
     }
   ];
   @override
