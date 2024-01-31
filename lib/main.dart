@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:testapp/UIs/Bubble%20Backup%20Animation/bubble_backup_animation.dart';
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
 import 'package:testapp/UIs/adaptive_test.dart';
+import 'package:testapp/UIs/boomerang_swiper/pages/home_page.dart';
 import 'package:testapp/UIs/cards/cards_home.dart';
 import 'package:testapp/UIs/charts/line_grad_chart.dart';
 import 'package:testapp/UIs/circular_ring_animation/baseAnimation.dart';
 import 'package:testapp/UIs/circular_ring_animation/circular_anim_main.dart';
 import 'package:testapp/UIs/compass/compass_screen.dart';
+import 'package:testapp/UIs/crossSell/main3.dart';
+import 'package:testapp/UIs/crossSell/test_screen.dart';
+import 'package:testapp/UIs/crossSellV2/cross_sell_main.dart';
 import 'package:testapp/UIs/custom_paint/paint.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
 import 'package:testapp/UIs/lotties/lottie.dart';
@@ -16,6 +20,7 @@ import 'package:testapp/UIs/path_glow/path_glow_main.dart';
 import 'package:testapp/UIs/slivers/insta_nested_scroll_view.dart';
 import 'package:testapp/UIs/test/test.dart';
 import 'package:testapp/apps/installed_apps.dart';
+import 'package:testapp/gists/page_view_sample.dart';
 import 'package:testapp/utils/size_config.dart';
 
 void main() async {
@@ -100,7 +105,24 @@ class HomePage extends StatelessWidget {
     },
     {
       "Insta Nested ScrollView": const InstaProfilePage(),
+    },
+      {
+      "Cool Boomerang Swiper": const CoolSwiperHomePage(),
+    },  
+    {
+      "Cross Sell": const TestScreen(),
     }
+    ,  
+    {
+      "Parallax Recipie": const ParallaxRecipe(),
+    },
+     {
+      "Cross Sell V2": const UpSellMain(),
+    },
+     {
+      "Page View": const PageViewSample(),
+    }
+    
   ];
   @override
   Widget build(BuildContext context) {

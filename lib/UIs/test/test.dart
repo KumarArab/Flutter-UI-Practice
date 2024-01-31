@@ -4,6 +4,7 @@ import 'package:testapp/UIs/test/Custom%20Path/splash.dart';
 import 'package:testapp/UIs/test/ignore_pointer.dart';
 import 'package:testapp/UIs/test/other_tests/infinite_scroll_bg.dart';
 import 'package:testapp/UIs/test/other_tests/rotating_loader.dart';
+import 'package:testapp/UIs/test/radio_button_test.dart';
 import 'package:testapp/UIs/test/stack_overflow/slider_swiper.dart';
 import 'package:testapp/UIs/test/test_widgets/draggable_container_top.dart';
 import 'package:testapp/UIs/test/time_machine.dart';
@@ -100,6 +101,18 @@ class TestView extends StatelessWidget {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (ctx) => const InfinteList(),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.circle,
+              color: Colors.orange,
+            ),
+            title: const Text("Radio Button Test"),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (ctx) => const RadioButtonTest(),
               ),
             ),
           ),

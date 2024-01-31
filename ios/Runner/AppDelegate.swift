@@ -19,7 +19,7 @@ import Flutter
              result(FlutterMethodNotImplemented)
              return
            }
-           self?.getUniqueDeviceId(result: result)
+           self.getUniqueDeviceId(result: result)
           
           
           })

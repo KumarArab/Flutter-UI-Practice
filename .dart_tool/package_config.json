@@ -3,13 +3,13 @@
   "packages": [
     {
       "name": "_fe_analyzer_shared",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-60.0.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-61.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/analyzer-5.12.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/analyzer-5.13.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -33,15 +33,15 @@
     },
     {
       "name": "archive",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/archive-3.3.2",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/archive-3.4.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "args",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/args-2.4.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/args-2.4.2",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "async",
@@ -75,9 +75,9 @@
     },
     {
       "name": "build_resolvers",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/build_resolvers-2.2.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/build_resolvers-2.4.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "build_runner",
@@ -87,7 +87,7 @@
     },
     {
       "name": "build_runner_core",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/build_runner_core-7.2.7",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/build_runner_core-7.2.7+1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -99,7 +99,7 @@
     },
     {
       "name": "built_value",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/built_value-8.5.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/built_value-8.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -135,13 +135,13 @@
     },
     {
       "name": "code_builder",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/code_builder-4.4.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/code_builder-4.7.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/collection-1.17.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/collection-1.17.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -153,33 +153,33 @@
     },
     {
       "name": "crypto",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/crypto-3.0.2",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/crypto-3.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.19"
     },
     {
       "name": "cupertino_icons",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.19"
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/dart_style-2.3.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/dart_style-2.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "drift",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/drift-2.8.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/drift-2.13.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "drift_dev",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/drift_dev-2.8.2",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/drift_dev-2.13.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "fake_async",
@@ -189,9 +189,9 @@
     },
     {
       "name": "ffi",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/ffi-2.0.2",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/ffi-2.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "file",
@@ -225,7 +225,7 @@
     },
     {
       "name": "flutter_mobx",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/flutter_mobx-2.0.6+5",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/flutter_mobx-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.13"
     },
@@ -249,13 +249,13 @@
     },
     {
       "name": "freezed",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/freezed-2.3.4",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/freezed-2.4.5",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "freezed_annotation",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/freezed_annotation-2.2.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/freezed_annotation-2.4.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -279,19 +279,19 @@
     },
     {
       "name": "get_it",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/get_it-7.6.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/get_it-7.6.4",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "glob",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/glob-2.1.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/glob-2.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.15"
+      "languageVersion": "2.19"
     },
     {
       "name": "go_router",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/go_router-7.0.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/go_router-7.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -303,7 +303,7 @@
     },
     {
       "name": "graphs",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/graphs-2.3.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/graphs-2.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -363,9 +363,9 @@
     },
     {
       "name": "logging",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/logging-1.1.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/logging-1.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "lottie",
@@ -375,15 +375,15 @@
     },
     {
       "name": "matcher",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/matcher-0.12.15",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/matcher-0.12.16",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/material_color_utilities-0.2.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/material_color_utilities-0.5.0",
       "packageUri": "lib/",
-      "languageVersion": "2.13"
+      "languageVersion": "2.17"
     },
     {
       "name": "meta",
@@ -399,15 +399,15 @@
     },
     {
       "name": "mobx",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/mobx-2.2.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/mobx-2.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "mobx_codegen",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/mobx_codegen-2.3.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/mobx_codegen-2.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.13"
+      "languageVersion": "3.0"
     },
     {
       "name": "nested",
@@ -441,45 +441,45 @@
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider-2.0.15",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider-2.1.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_android-2.0.27",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_android-2.2.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "path_provider_foundation",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.3",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "path_provider_linux",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "path_provider_platform_interface",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.19"
     },
     {
       "name": "path_provider_windows",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.6",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/petitparser-5.1.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/petitparser-5.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "platform",
@@ -489,9 +489,15 @@
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.4",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.6",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "pointycastle",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/pointycastle-3.7.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "pool",
@@ -537,45 +543,45 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences-2.1.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences-2.2.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "shared_preferences_android",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_android-2.1.4",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "shared_preferences_foundation",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.2.2",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "shared_preferences_linux",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.2.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "shared_preferences_platform_interface",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.2.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.3.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "shared_preferences_web",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_web-2.1.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "shared_preferences_windows",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.2.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "shelf",
@@ -597,33 +603,33 @@
     },
     {
       "name": "source_gen",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/source_gen-1.3.2",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/source_gen-1.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "source_span",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/source_span-1.9.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
-      "name": "sqlite3",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/sqlite3-1.11.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/source_span-1.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
+      "name": "sqlite3",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/sqlite3-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "sqlite3_flutter_libs",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/sqlite3_flutter_libs-0.5.15",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/sqlite3_flutter_libs-0.5.17",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "sqlparser",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/sqlparser-0.30.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/sqlparser-0.32.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "stack_trace",
@@ -657,13 +663,13 @@
     },
     {
       "name": "syncfusion_flutter_charts",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/syncfusion_flutter_charts-22.1.38",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/syncfusion_flutter_charts-22.2.12",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "syncfusion_flutter_core",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-22.1.38",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-22.2.12",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -675,7 +681,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/test_api-0.5.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/test_api-0.6.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -687,9 +693,9 @@
     },
     {
       "name": "typed_data",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/typed_data-1.3.1",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/typed_data-1.3.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "vector_math",
@@ -699,15 +705,21 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/vm_service-11.3.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/vm_service-11.7.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "watcher",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/watcher-1.0.2",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/watcher-1.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "web",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/web-0.1.4-beta",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
     },
     {
       "name": "web_socket_channel",
@@ -723,15 +735,15 @@
     },
     {
       "name": "win32",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/win32-4.1.4",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/win32-5.0.9",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "xdg_directories",
-      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/xdg_directories-1.0.0",
+      "rootUri": "file:///Users/arabkumar/.pub-cache/hosted/pub.dev/xdg_directories-1.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "xml",
@@ -752,7 +764,7 @@
       "languageVersion": "2.14"
     }
   ],
-  "generated": "2023-07-13T08:10:07.937140Z",
+  "generated": "2023-11-09T11:32:32.273219Z",
   "generator": "pub",
-  "generatorVersion": "3.0.5"
+  "generatorVersion": "3.1.3"
 }

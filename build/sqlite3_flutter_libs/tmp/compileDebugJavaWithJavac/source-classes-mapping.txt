@@ -1,5 +1,0 @@
-eu/simonbinder/sqlite3_flutter_libs/Sqlite3FlutterLibsPlugin.java
- eu.simonbinder.sqlite3_flutter_libs.Sqlite3FlutterLibsPlugin
- eu.simonbinder.sqlite3_flutter_libs.Sqlite3FlutterLibsPlugin$1
-eu/simonbinder/sqlite3_flutter_libs/BuildConfig.java
- eu.simonbinder.sqlite3_flutter_libs.BuildConfig
