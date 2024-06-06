@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:testapp/UIs/Bubble%20Backup%20Animation/bubble_backup_animation.dart';
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
 import 'package:testapp/UIs/adaptive_test.dart';
+import 'package:testapp/UIs/airbnb/home_view.dart';
 import 'package:testapp/UIs/boomerang_swiper/pages/home_page.dart';
 import 'package:testapp/UIs/cards/cards_home.dart';
 import 'package:testapp/UIs/charts/line_grad_chart.dart';
@@ -16,13 +17,17 @@ import 'package:testapp/UIs/custom_paint/paint.dart';
 import 'package:testapp/UIs/image-animation/image_anim_main.dart';
 import 'package:testapp/UIs/lotties/lottie.dart';
 import 'package:testapp/UIs/multi_scratch_card_view/instant_scratch_view.dart';
+import 'package:testapp/UIs/nested_nav/nested_nav_home.dart';
 import 'package:testapp/UIs/path_glow/path_glow_main.dart';
 import 'package:testapp/UIs/slivers/insta_nested_scroll_view.dart';
 import 'package:testapp/UIs/test/test.dart';
 import 'package:testapp/apps/installed_apps.dart';
+import 'package:testapp/gists/circular_slider/circular_slider.dart';
 import 'package:testapp/gists/page_view_sample.dart';
 import 'package:testapp/utils/size_config.dart';
+import 'package:testapp/gists/wave_slider.dart.dart';
 
+GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
 void main() async {
   // debugPrintGestureArenaDiagnostics = true;
   runApp(const MyApp());
@@ -39,6 +44,7 @@ class MyApp extends StatelessWidget {
         //   enabled: true,
         //   builder: (ctx) =>
         MaterialApp(
+      key: navKey,
       title: 'Flutter Demo',
       useInheritedMediaQuery: true,
       // showPerformanceOverlay: true,
@@ -58,6 +64,14 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final List<uItems> items = [
+    {"Wave Slider": const WaveSlider(color: Colors.teal)},
+    {"Nested nav": const NestedNavCheckHome()},
+    {
+      "AirBnb Anim": const AirBnbHomeView(),
+    },
+    {
+      "Circular Slider": const MyCircularSlider(),
+    },
     {
       "Staggered Grid View": const StaggeredGridView(),
     },
@@ -106,23 +120,21 @@ class HomePage extends StatelessWidget {
     {
       "Insta Nested ScrollView": const InstaProfilePage(),
     },
-      {
+    {
       "Cool Boomerang Swiper": const CoolSwiperHomePage(),
-    },  
+    },
     {
       "Cross Sell": const TestScreen(),
-    }
-    ,  
+    },
     {
       "Parallax Recipie": const ParallaxRecipe(),
     },
-     {
+    {
       "Cross Sell V2": const UpSellMain(),
     },
-     {
+    {
       "Page View": const PageViewSample(),
     }
-    
   ];
   @override
   Widget build(BuildContext context) {

@@ -1,0 +1,1 @@
+{"valid_import":true,"imports":[{"uri":"package:flutter/cupertino.dart","transitive":false},{"uri":"package:flutter/material.dart","transitive":false},{"uri":"package:appinio_swiper/appinio_swiper.dart","transitive":false},{"uri":"package:testapp/utils/size_config.dart","transitive":false}],"elements":[]}

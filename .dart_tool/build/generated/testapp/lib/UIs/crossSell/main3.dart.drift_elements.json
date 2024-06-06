@@ -1,0 +1,1 @@
+{"valid_import":true,"imports":[{"uri":"package:flutter/material.dart","transitive":false},{"uri":"package:testapp/UIs/crossSell/location_data.dart","transitive":false},{"uri":"package:testapp/UIs/crossSell/location_list_item.dart","transitive":false}],"elements":[]}

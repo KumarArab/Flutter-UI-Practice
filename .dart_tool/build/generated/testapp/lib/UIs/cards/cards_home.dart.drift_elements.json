@@ -1,0 +1,1 @@
+{"valid_import":true,"imports":[{"uri":"package:flutter/material.dart","transitive":false},{"uri":"package:flutter_svg/svg.dart","transitive":false},{"uri":"package:google_fonts/google_fonts.dart","transitive":false},{"uri":"package:testapp/utils/size_config.dart","transitive":false}],"elements":[]}

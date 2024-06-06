@@ -131,7 +131,7 @@ class _DataBackupInitialPageState extends State<DataBackupInitialPage> {
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
-                              primary: mainDataBackupColor),
+                              ),
                           child: const Padding(
                             padding: EdgeInsets.all(20.0),
                             child: Text(

@@ -1,0 +1,1 @@
+{"valid_import":true,"imports":[{"uri":"package:flutter/material.dart","transitive":false},{"uri":"package:testapp/UIs/Staggered%20Grid%20View/data.dart","transitive":false},{"uri":"package:testapp/utils/size_config.dart","transitive":false}],"elements":[]}

@@ -1,0 +1,1 @@
+{"valid_import":true,"imports":[{"uri":"package:flutter/material.dart","transitive":false},{"uri":"package:testapp/UIs/boomerang_swiper/data.dart","transitive":false},{"uri":"package:testapp/UIs/boomerang_swiper/src/widgets/cool_swiper.dart","transitive":false},{"uri":"package:testapp/UIs/boomerang_swiper/widgets/card_content.dart","transitive":false}],"elements":[]}
