@@ -4,6 +4,7 @@ import 'package:testapp/UIs/Bubble%20Backup%20Animation/bubble_backup_animation.
 import 'package:testapp/UIs/Staggered%20Grid%20View/staggered_grid_view.dart';
 import 'package:testapp/UIs/adaptive_test.dart';
 import 'package:testapp/UIs/airbnb/home_view.dart';
+import 'package:testapp/UIs/animated_timeline/animated_timeline.dart';
 import 'package:testapp/UIs/boomerang_swiper/pages/home_page.dart';
 import 'package:testapp/UIs/cards/cards_home.dart';
 import 'package:testapp/UIs/charts/line_grad_chart.dart';
@@ -64,7 +65,12 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final List<uItems> items = [
-    {"Wave Slider": const WaveSlider(color: Colors.teal)},
+    {
+      "Animated Timeline":  Timeline()
+    },
+    {
+      "Wave Slider": const WaveSlider(color: Colors.teal),
+    },
     {"Nested nav": const NestedNavCheckHome()},
     {
       "AirBnb Anim": const AirBnbHomeView(),
